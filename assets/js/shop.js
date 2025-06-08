@@ -7,17 +7,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Fetch products from JSON file
     fetch('products.json')
-        .then(response => response.json())
-        .then(products => {
-            allProducts = products;
-            
-            // Display first page of products initially
+    .then(response => response.json())
+    .then(products => {
+        allProducts = products;
+        
+        // Check if we came from header navigation - READ ONCE AND USE
+        const fromHeaderNav = localStorage.getItem('fromHeaderNav') === 'true';
+        const storedCategory = localStorage.getItem('selectedCategory');
+        
+        // Clear the flags after reading
+        localStorage.removeItem('fromHeaderNav');
+        localStorage.removeItem('selectedCategory');
+        
+        // If coming from header nav with a category, display that category
+        if (fromHeaderNav && storedCategory) {
+            const category = storedCategory === 'all' ? null : storedCategory;
+            displayProducts(allProducts, category);
+        } 
+        // Otherwise show all products (default behavior)
+        else {
             displayProducts(allProducts);
-            
-            // Set up category filters
-            setupCategoryFilters(allProducts);
-        })
-        .catch(error => console.error('Error loading products:', error));
+        }
+        
+        // Set up category filters
+        setupCategoryFilters(allProducts);
+    })
+    .catch(error => console.error('Error loading products:', error));
 
     // Function to display products with pagination
     function displayProducts(products, category = null, page = 1) {

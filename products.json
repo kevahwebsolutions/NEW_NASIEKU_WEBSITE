@@ -1,18 +1,5 @@
 [
- {
-   "name": "Maasai Leather Beaded Belt",
-   "category": "clothing and fashion",
-   "image_url": "assets\\img\\clothing and fashion/1.jpg",
-   "Image name": "1.jpg",
-   "price": 4250
- },
- {
-   "name": "Kenyan Flag Beaded Maasai Belt",
-   "category": "clothing and fashion",
-   "image_url": "assets\\img\\clothing and fashion/2.jpg",
-   "Image name": "2.jpg",
-   "price": 4250
- },
+
  {
    "name": "Cozy, stylish, warm crotchet gloves.",
    "category": "clothing and fashion",
@@ -20,13 +7,7 @@
    "Image name": "3.jpg",
    "price": 2240
  },
- {
-   "name": "Multicoloured Beaded Maasai Belt",
-   "category": "clothing and fashion",
-   "image_url": "assets\\img\\clothing and fashion/4.jpg",
-   "Image name": "4.jpg",
-   "price": 4250
- },
+ 
  {
    "name": "Afro Printed Yellow T-Shirt",
    "category": "clothing and fashion",
@@ -97,6 +78,20 @@
    "Image name": "14.jpg",
    "price": 4500
  },
+  {
+   "name": "Maasai Leather Beaded Belt",
+   "category": "clothing and fashion",
+   "image_url": "assets\\img\\clothing and fashion/1.jpg",
+   "Image name": "1.jpg",
+   "price": 4250
+ },
+ {
+   "name": "Kenyan Flag Beaded Maasai Belt",
+   "category": "clothing and fashion",
+   "image_url": "assets\\img\\clothing and fashion/2.jpg",
+   "Image name": "2.jpg",
+   "price": 4250
+ },
  {
    "name": "Kenyan Branded T-Shirt",
    "category": "clothing and fashion",
@@ -131,6 +126,13 @@
    "image_url": "assets\\img\\clothing and fashion/19.jpg",
    "Image name": "19.jpg",
    "price": 5750
+ },
+ {
+   "name": "Multicoloured Beaded Maasai Belt",
+   "category": "clothing and fashion",
+   "image_url": "assets\\img\\clothing and fashion/4.jpg",
+   "Image name": "4.jpg",
+   "price": 4250
  },
  {
    "name": "Short Sleeved Ankara Shirt Dress",

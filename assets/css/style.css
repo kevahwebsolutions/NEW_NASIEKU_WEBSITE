@@ -1307,7 +1307,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 @media only screen and (max-width: 767px) {
   .dropdown_search form button {
-    width: 45px;
+    width: auto;
+    height: auto;
   }
 }
 
@@ -12257,228 +12258,195 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 .product_remove a:hover {
     color: #cc0000;
 }
-/* Search results styling */
-.current-category-title {
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-    color: #333;
-}
-
-.search_container_new {
-    margin-bottom: 20px;
-}
-
-.search_box {
-    display: flex;
-    align-items: center;
-}
-
-.search_box input {
-    flex: 1;
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px 0 0 4px;
-    font-size: 14px;
-}
-
-.search_box button {
-    padding: 10px 20px;
-    background-color: #ff5500;
-    color: white;
-    border: none;
-    border-radius: 0 4px 4px 0;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.search_box button:hover {
-    background-color: #e04b00;
-}
-/* Search with suggestions */
-.search_container_new {
-    position: relative;
-}
-
-.search-suggestions {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 0 0 4px 4px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    z-index: 1000;
-    max-height: 300px;
-    overflow-y: auto;
-}
-
-.suggestion-item {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    cursor: pointer;
-    border-bottom: 1px solid #eee;
-    transition: background 0.2s;
-}
-
-.suggestion-item:hover {
-    background: #f5f5f5;
-}
-
-.suggestion-item img {
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
-    margin-right: 10px;
-    border-radius: 2px;
-}
-
-.suggestion-name {
-    font-weight: 500;
-    margin-bottom: 2px;
-}
-
-.suggestion-category {
-    font-size: 12px;
-    color: #666;
-}
-
-.highlight {
-    background-color: #fff8c6;
-    font-weight: bold;
-}
-
-.search_box input {
-    width: 100%;
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-.search_box button {
-    display: none; /* Hide if you want cleaner design */
-}
-/* Search Container - Base Styles */
-.search_container_new {
-    position: relative;
-    width: 100%;
-    max-width: 500px; /* Adjust as needed */
-}
-
-/* Search Form - Visible on Desktop */
-.search-form {
-    display: flex;
-    width: 100%;
-}
-
-.search_box {
-    display: flex;
-    width: 100%;
-    position: relative;
-}
-
-.search_box input {
-    flex: 1;
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 30px;
-    font-size: 14px;
-    height: 40px;
-    outline: none;
-    transition: all 0.3s ease;
-}
-
-.search_box input:focus {
-    border-color: #ff5500;
-    box-shadow: 0 0 0 2px rgba(255, 85, 0, 0.2);
-}
-
-.search-button {
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #ff5500;
-    color: white;
-    border: none;
-    border-radius: 30px;
-    padding: 5px 15px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.search-button:hover {
-    background: #e04b00;
-}
-
-.search-button svg {
-    display: none;
-}
-
-.search-text {
-    font-size: 14px;
-}
-
-/* Mobile Search Toggle - Hidden on Desktop */
-.mobile-search-toggle {
-    display: none;
-    background: none;
-    border: none;
-    padding: 8px;
-    cursor: pointer;
-    color: #333;
-}
-
-.mobile-search-toggle svg {
-    width: 24px;
-    height: 24px;
-}
-
-/* Mobile Styles */
+/* Mobile Search Styles Only */
 @media (max-width: 767px) {
-    .search-form {
-        display: none;
+    .search_btn {
+        position: relative;
+        margin-right: 15px;
+    }
+    
+    .search_btn > a {
+        display: inline-block;
+        color: #333;
+        font-size: 18px;
+        padding: 8px;
+        text-decoration: none;
+    }
+    
+    .dropdown_search {
         position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
+        top: 153%;
+        left: -150px;
         background: white;
-        padding: 10px;
         z-index: 1000;
-        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-        border-radius: 8px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        min-width: 280px;
+        border-radius: 5px;
+        overflow: hidden;
     }
     
-    .search-form.active {
+    .dropdown_search.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    
+    .dropdown_search .search_box {
+        padding: 15px;
         display: flex;
+        gap: 10px;
+        align-items: center; /* Added to vertically center items */
     }
     
-    .mobile-search-toggle {
-        display: block;
+    .dropdown_search .search_box input {
+        flex: 1;
+        padding: 10px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+        outline: none;
+        height: 40px; /* Fixed height for input */
+        box-sizing: border-box; /* Include padding in height calculation */
     }
     
-    .search_box input {
-        font-size: 16px;
-        padding: 12px 20px;
-        height: 48px;
+    .dropdown_search .search_box button {
+        background: #d51c1e;
+        color: white;
+        border: none;
+        padding: 0 12px; /* Changed to 0 padding top/bottom */
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 14px;
+        height: 40px; /* Match input height */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 40px; /* Ensure button has minimum width */
     }
     
-    .search-button {
-        height: 40px;
-        padding: 5px 10px;
+    .dropdown_search .search_box button:hover {
+        background: #d51c1e;
     }
     
-    .search-button svg {
-        display: block;
+    /* Ensure proper positioning */
+    .middel_rightinfo_new {
+        display: flex;
+        align-items: center;
     }
-    
-    .search-text {
-        display: none;
-    }
+}
+/* Modern Product Card Styling */
+.single_product {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+}
+
+.single_product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.product_content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+}
+
+.product_thumb {
+    height: 180px; /* More compact image container */
+    overflow: hidden;
+}
+
+.product_thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product_thumb:hover img {
+    transform: scale(1.08);
+}
+
+.tag_cate span {
+    display: inline-block;
+    background: #f0f0f0;
+    color: #666;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+h3 {
+    margin: 8px 0;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #333;
+    font-weight: 500;
+    min-height: auto; /* Remove fixed height */
+}
+
+.price_box {
+    margin: 8px 0 12px;
+}
+
+.current_price {
+    font-weight: 600;
+    color: #2a2a2a;
+    font-size: 18px;
+}
+
+.product_hover {
+    margin-top: auto;
+    padding-top: 12px;
+}
+
+.add-to-cart-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    background: #4a6bff;
+    color: white;
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+}
+
+.add-to-cart-btn:hover {
+    background: #3a5bef;
+    transform: translateY(-1px);
+}
+
+/* Grid spacing adjustments */
+.col-lg-4.col-md-4.col-sm-6 {
+    margin-bottom: 24px;
+    padding: 0 12px;
+}
+
+/* Modern color scheme */
+:root {
+    --primary: #4a6bff;
+    --primary-hover: #3a5bef;
+    --text-dark: #2a2a2a;
+    --text-medium: #555;
+    --text-light: #777;
+    --bg-light: #f8f9fa;
+}
+
+/* Optional: Add a subtle border for depth */
+.single_product {
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }

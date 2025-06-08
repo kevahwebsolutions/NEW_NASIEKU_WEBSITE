@@ -100,89 +100,79 @@
     <header class="header_area">
 
         <!--header middel start-->
-        <div class="header_middel header_middle9">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-2 col-md-3 col-4">
-                        <div class="logo">
-                            <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
-                        </div>
+<div class="header_middel header_middle9">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-2 col-md-3 col-4">
+                <div class="logo">
+                    <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                </div>
+            </div>
+            <div class="col-lg-10 col-md-7 col-6">
+                <div class="middel_right">
+                    <!-- Desktop Search (visible on md and up) -->
+                    <div class="search_container_new search-form d-none d-md-block">
+                        <form action="#" class="search-form">
+                            <div class="search_box">
+                                <input placeholder="Search products..." type="text" autocomplete="off">
+                                <button type="submit" class="search-button">
+                                    <i class="ion-ios-search-strong"></i>
+                                    <span class="search-text">Search</span>
+                                </button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="col-lg-10 col-md-7 col-6">
-                        <div class="middel_right">
-                            <div class="search_container_new">
-    <!-- Mobile search toggle button (visible only on mobile) -->
-    <button class="mobile-search-toggle">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-    </button>
-    
-    <!-- Search form (visible on desktop, toggleable on mobile) -->
-    <form action="#" class="search-form">
-        <div class="search_box">
-            <input placeholder="Search products..." type="text" autocomplete="off">
-            <button type="submit" class="search-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-                <span class="search-text">Search</span>
-            </button>
-        </div>
-    </form>
-</div>
-                            <div class="middel_rightinfo_new">
-                                <!-- <div class="box_setting">
-                                    <a href="#"><i class="ion-gear-b"></i></a>
-                                    <div class="dropdown_setting">
-                                        <ul>
-                                            <li><a href="checkout.html">Checkout </a></li>
-                                            <li><a href="cart.html">Shopping Cart</a></li>
-                                        </ul>
-
+                    
+                    <div class="middel_rightinfo_new">
+                        <!-- Mobile Search Button (visible only on mobile, positioned before settings) -->
+                        <div class="search_btn d-md-none">
+                            <a href="#" class="mobile-search-toggle"><i class="ion-ios-search-strong"></i></a>
+                            <div class="dropdown_search search-form">
+                                <form action="#" class="search-form">
+                                    <div class="search_box">
+                                        <input placeholder="Search products..." type="text" autocomplete="off"> 
                                     </div>
-                                </div> -->
-                                <div class="cart_link">
-                                    <a href="#"><i class="ion-android-cart"></i><span class="cart_text_quantity">
-                                           0</span> <i class="fa fa-angle-down"></i></a>
-                                    <span class="cart_quantity">0</span>
-                                    <!--mini cart-->
-                                    <div class="mini_cart">
-                                        <div class="cart_close">
-                                            <div class="cart_text">
-                                                <h3>cart</h3>
-                                            </div>
-                                            <div class="mini_cart_close">
-                                                <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="cart_items_container">
-                                            <!-- Cart items will be inserted here dynamically -->
-                                        </div>
-                                        <div class="cart_total">
-                                            <span>Subtotal:</span>
-                                            <span class="cart_subtotal">Ksh 0</span>
-                                        </div>
-                                        <div class="mini_cart_footer">
-                                            <div class="cart_button view_cart">
-                                                <a href="cart.html">View cart</a>
-                                            </div>
-                                            <div class="cart_button checkout">
-                                                <a class="active" href="checkout.html">Checkout</a>
-                                            </div>
-                                        </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="cart_link">
+                            <a href="#"><i class="ion-android-cart"></i><span class="cart_text_quantity">0</span> <i class="fa fa-angle-down"></i></a>
+                            <span class="cart_quantity">0</span>
+                            <!--mini cart-->
+                            <div class="mini_cart">
+                                <div class="cart_close">
+                                    <div class="cart_text">
+                                        <h3>cart</h3>
                                     </div>
-                                    <!--mini cart end-->
+                                    <div class="mini_cart_close">
+                                        <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+                                    </div>
+                                </div>
+                                <div class="cart_items_container">
+                                    <!-- Cart items will be inserted here dynamically -->
+                                </div>
+                                <div class="cart_total">
+                                    <span>Subtotal:</span>
+                                    <span class="cart_subtotal">Ksh 0</span>
+                                </div>
+                                <div class="mini_cart_footer">
+                                    <div class="cart_button view_cart">
+                                        <a href="cart.html">View cart</a>
+                                    </div>
+                                    <div class="cart_button checkout">
+                                        <a class="active" href="checkout.html">Checkout</a>
+                                    </div>
                                 </div>
                             </div>
+                            <!--mini cart end-->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!--header middel end-->
+    </div>
+</div>
+<!--header middel end-->
 
 <!-- Cart Notification -->
 <div class="cart-notification" id="cartNotification">
@@ -195,108 +185,22 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-12">
-                        <div class="categories_menu">
-                            <div class="categories_title">
-                                <h2 class="categori_toggle">ALL CATEGORIES</h2>
-                            </div>
-                            <div class="categories_menu_toggle">
-                                <ul>
-                                    <li class="menu_item_children"><a href="#">Clothes & Fashion <i
-                                                class="fa fa-angle-right"></i></a>
-                                        <ul class="categories_mega_menu">
-                                            <li class="menu_item_children"><a href="#">Women</a>
-                                                <ul class="categorie_sub_menu">
-                                                    <li><a href="#">Beaded Dresses</a></li>
-                                                    <li><a href="#">Modern Shukas</a></li>
-                                                    <li><a href="#">Traditional Wraps</a></li>
-                                                    <li><a href="#">Casual Wear</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu_item_children"><a href="#">Men</a>
-                                                <ul class="categorie_sub_menu">
-                                                    <li><a href="#">Beaded Shirts</a></li>
-                                                    <li><a href="#">Maasai Blankets</a></li>
-                                                    <li><a href="#">Ceremonial Attire</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu_item_children"><a href="#">Unisex</a>
-                                                <ul class="categorie_sub_menu">
-                                                    <li><a href="#">Beaded Jackets</a></li>
-                                                    <li><a href="#">Headbands & Belts</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu_item_children"><a href="#">Jewelry <i
-                                                class="fa fa-angle-right"></i></a>
-                                        <ul class="categories_mega_menu column_3">
-                                            <li class="menu_item_children"><a href="#">Necklaces</a>
-                                                <ul class="categorie_sub_menu">
-                                                    <li><a href="#">Beaded Chokers</a></li>
-                                                    <li><a href="#">Statement Pieces</a></li>
-                                                    <li><a href="#">Traditional Loops</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu_item_children"><a href="#">Bracelets</a>
-                                                <ul class="categorie_sub_menu">
-                                                    <li><a href="#">Cuff Bracelets</a></li>
-                                                    <li><a href="#">Beaded Bangles</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu_item_children"><a href="#">Earrings</a>
-                                                <ul class="categorie_sub_menu">
-                                                    <li><a href="#">Beaded Drops</a></li>
-                                                    <li><a href="#">Hoops</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu_item_children"><a href="#">Home Decor <i
-                                                class="fa fa-angle-right"></i></a>
-                                        <ul class="categories_mega_menu column_2">
-                                            <li class="menu_item_children"><a href="#">Beaded Art</a>
-                                                <ul class="categorie_sub_menu">
-                                                    <li><a href="#">Wall Hangings</a></li>
-                                                    <li><a href="#">Dreamcatchers</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu_item_children"><a href="#">Functional Items</a>
-                                                <ul class="categorie_sub_menu">
-                                                    <li><a href="#">Beaded Mugs</a></li>
-                                                    <li><a href="#">Decorative Bowls</a></li>
-                                                    <li><a href="#">Key Holders</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu_item_children"><a href="#">Traditional Artifacts <i
-                                                class="fa fa-angle-right"></i></a>
-                                        <ul class="categories_mega_menu column_2">
-                                            <li class="menu_item_children"><a href="#">Ceremonial Items</a>
-                                                <ul class="categorie_sub_menu">
-                                                    <li><a href="#">O-Rinka (Clubs)</a></li>
-                                                    <li><a href="#">Walking Sticks</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu_item_children"><a href="#">Symbolic Gifts</a>
-                                                <ul class="categorie_sub_menu">
-                                                    <li><a href="#">Beaded Shields</a></li>
-                                                    <li><a href="#">Wedding Tokens</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">New Arrivals</a></li>
-                                    <li><a href="#">Best Sellers</a></li>
-                                    <li><a href="#">Gift Sets</a></li>
-                                    <li class="hidden"><a href="#">Limited Edition</a></li>
-                                    <li class="hidden"><a href="#">Custom Orders</a></li>
-                                    <li><a href="#" id="more-btn"><i class="fa fa-plus" aria-hidden="true"></i> More
-                                            Categories</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+    <div class="categories_menu">
+        <div class="categories_title">
+            <h2 class="categori_toggle">VIEW CATEGORIES</h2>
+        </div>
+        <div class="categories_menu_toggle">
+            <ul>
+                <li><a href="shop.html" class="header-category" data-category="all">All Products</a></li>
+                <li><a href="shop.html" class="header-category" data-category="clothing and fashion">Clothes & Fashion</a></li>
+                <li><a href="shop.html" class="header-category" data-category="bags">Bags</a></li>
+                <li><a href="shop.html" class="header-category" data-category="home decor">Home Decor & Entertainment</a></li>
+                <li><a href="shop.html" class="header-category" data-category="jewelry">Jewelry & Accessories</a></li>
+                <li><a href="shop.html" class="header-category" data-category="art">African Art & Collectibles</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
                     <div class="col-lg-9 col-md-12">
                         <div class="main_menu_inner main_menu9_inner">
                             <div class="logo_sticky">
@@ -677,6 +581,7 @@
     <script src="assets/js/cart.js"></script>
     <script src="assets/js/shop.js"></script>
     <script src="assets/js/search.js"></script>
+    <script src="assets/js/header-categories.js"></script>
 
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>

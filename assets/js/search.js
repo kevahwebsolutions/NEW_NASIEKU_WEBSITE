@@ -3,34 +3,58 @@ document.addEventListener('DOMContentLoaded', function() {
     let allProducts = [];
     let currentSearchTerm = '';
     
-    // Search elements
-    const mobileToggle = document.querySelector('.mobile-search-toggle');
-    const searchForm = document.querySelector('.search-form');
-    const searchInput = document.querySelector('.search_box input');
-    const searchFormElement = document.querySelector('.search-form');
+    // Mobile search elements
+    const mobileSearchToggle = document.querySelector('.mobile-search-toggle');
+    const dropdownSearch = document.querySelector('.dropdown_search');
+    const mobileSearchForm = document.querySelector('.dropdown_search form');
+    const mobileSearchInput = document.querySelector('.dropdown_search input');
+    
+    // Desktop search elements
+    const desktopSearchForm = document.querySelector('.search_container_new form');
+    const desktopSearchInput = document.querySelector('.search_container_new input');
     
     // Product display elements
     const productContainer = document.querySelector('.tab-pane.grid_view .row');
     const categoryTitle = document.querySelector('.current-category-title');
 
+    // Get search parameter from URL
+    function getSearchFromUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('search') || '';
+    }
+
+    // Update URL with search parameter (without page reload)
+    function updateUrlWithSearch(searchTerm) {
+        const url = new URL(window.location);
+        if (searchTerm) {
+            url.searchParams.set('search', searchTerm);
+        } else {
+            url.searchParams.delete('search');
+        }
+        window.history.replaceState({}, '', url);
+    }
+
     // Mobile search toggle functionality
-    if (mobileToggle && searchForm) {
-        // Toggle search form on mobile
-        mobileToggle.addEventListener('click', function(e) {
+    if (mobileSearchToggle && dropdownSearch) {
+        // Toggle dropdown on mobile search icon click
+        mobileSearchToggle.addEventListener('click', function(e) {
+            e.preventDefault();
             e.stopPropagation();
-            searchForm.classList.toggle('active');
-            if (searchForm.classList.contains('active')) {
-                searchInput.focus();
+            dropdownSearch.classList.toggle('active');
+            if (dropdownSearch.classList.contains('active')) {
+                mobileSearchInput.focus();
             }
         });
         
-        // Close search when clicking outside
-        document.addEventListener('click', function() {
-            searchForm.classList.remove('active');
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!dropdownSearch.contains(e.target) && !mobileSearchToggle.contains(e.target)) {
+                dropdownSearch.classList.remove('active');
+            }
         });
         
-        // Prevent closing when clicking inside the form
-        searchForm.addEventListener('click', function(e) {
+        // Prevent closing when clicking inside the dropdown
+        dropdownSearch.addEventListener('click', function(e) {
             e.stopPropagation();
         });
     }
@@ -40,32 +64,71 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(products => {
             allProducts = products;
-            setupSearch();
+            
+            // Check if there's a search parameter in URL
+            const urlSearchTerm = getSearchFromUrl();
+            if (urlSearchTerm) {
+                currentSearchTerm = urlSearchTerm.toLowerCase();
+                // Populate search inputs with the URL search term
+                if (mobileSearchInput) mobileSearchInput.value = urlSearchTerm;
+                if (desktopSearchInput) desktopSearchInput.value = urlSearchTerm;
+            }
+            
+            setupMobileSearch();
+            setupDesktopSearch();
+            
+            // Display products (filtered if search term exists)
+            filterAndDisplayProducts();
         })
         .catch(error => console.error('Error loading products:', error));
 
-    // Set up search functionality
-    function setupSearch() {
-        if (!searchFormElement || !searchInput) {
-            console.log('Search elements not found');
+    // Set up mobile search functionality
+    function setupMobileSearch() {
+        if (!mobileSearchForm || !mobileSearchInput) {
+            console.log('Mobile search elements not found');
             return;
         }
 
-        // Form submission handler
-        searchFormElement.addEventListener('submit', function(e) {
+        // Mobile form submission handler
+        mobileSearchForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            currentSearchTerm = searchInput.value.trim().toLowerCase();
+            currentSearchTerm = mobileSearchInput.value.trim().toLowerCase();
+            updateUrlWithSearch(currentSearchTerm);
             filterAndDisplayProducts();
             
-            // On mobile, close the search after submitting
-            if (window.innerWidth <= 767) {
-                searchForm.classList.remove('active');
-            }
+            // Close the dropdown after search
+            dropdownSearch.classList.remove('active');
         });
 
-        // Real-time search as user types
-        searchInput.addEventListener('input', function() {
+        // Real-time search as user types on mobile
+        mobileSearchInput.addEventListener('input', function() {
             currentSearchTerm = this.value.trim().toLowerCase();
+            updateUrlWithSearch(currentSearchTerm);
+            if (currentSearchTerm.length >= 3 || currentSearchTerm.length === 0) {
+                filterAndDisplayProducts();
+            }
+        });
+    }
+
+    // Set up desktop search functionality
+    function setupDesktopSearch() {
+        if (!desktopSearchForm || !desktopSearchInput) {
+            console.log('Desktop search elements not found');
+            return;
+        }
+
+        // Desktop form submission handler
+        desktopSearchForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            currentSearchTerm = desktopSearchInput.value.trim().toLowerCase();
+            updateUrlWithSearch(currentSearchTerm);
+            filterAndDisplayProducts();
+        });
+
+        // Real-time search as user types on desktop
+        desktopSearchInput.addEventListener('input', function() {
+            currentSearchTerm = this.value.trim().toLowerCase();
+            updateUrlWithSearch(currentSearchTerm);
             if (currentSearchTerm.length >= 3 || currentSearchTerm.length === 0) {
                 filterAndDisplayProducts();
             }
@@ -147,9 +210,46 @@ document.addEventListener('DOMContentLoaded', function() {
             productContainer.insertAdjacentHTML('beforeend', productHtml);
         });
 
+        // Show "No products found" message if no results
+        if (filteredProducts.length === 0 && currentSearchTerm) {
+            productContainer.innerHTML = `
+                <div class="col-12">
+                    <div class="no-products-found text-center py-5">
+                        <h4>No products found for "${currentSearchTerm}"</h4>
+                        <p>Try adjusting your search terms or browse our categories.</p>
+                    </div>
+                </div>
+            `;
+        }
+
         // Update pagination if it exists
         if (typeof updatePaginationControls === 'function') {
             updatePaginationControls(filteredProducts.length);
         }
     }
+
+    // Sync search inputs (keeps both search bars in sync)
+    function syncSearchInputs() {
+        if (mobileSearchInput && desktopSearchInput) {
+            mobileSearchInput.addEventListener('input', function() {
+                desktopSearchInput.value = this.value;
+            });
+            
+            desktopSearchInput.addEventListener('input', function() {
+                mobileSearchInput.value = this.value;
+            });
+        }
+    }
+
+    // Initialize search input sync
+    syncSearchInputs();
+
+    // Handle browser back/forward buttons
+    window.addEventListener('popstate', function() {
+        const urlSearchTerm = getSearchFromUrl();
+        currentSearchTerm = urlSearchTerm.toLowerCase();
+        if (mobileSearchInput) mobileSearchInput.value = urlSearchTerm;
+        if (desktopSearchInput) desktopSearchInput.value = urlSearchTerm;
+        filterAndDisplayProducts();
+    });
 });
