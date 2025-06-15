@@ -1,3 +1,4 @@
+        
 document.addEventListener('DOMContentLoaded', function() {
     // Global variables
     let allProducts = [];

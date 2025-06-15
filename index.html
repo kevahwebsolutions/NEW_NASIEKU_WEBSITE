@@ -75,7 +75,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://www.instagram.com/missnaeku/" target="_blank"
+                                        <a href="https://www.instagram.com/nasiekucreations/" target="_blank"
                                             rel="noopener noreferrer">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="#E4405F">
@@ -188,13 +188,14 @@
         </div>
         <div class="categories_menu_toggle">
             <ul>
-                <li><a href="shop.html" class="header-category" data-category="all">All Products</a></li>
-                <li><a href="shop.html" class="header-category" data-category="clothing and fashion">Clothes & Fashion</a></li>
-                <li><a href="shop.html" class="header-category" data-category="bags">Bags</a></li>
-                <li><a href="shop.html" class="header-category" data-category="home decor">Home Decor & Entertainment</a></li>
-                <li><a href="shop.html" class="header-category" data-category="jewelry">Jewelry & Accessories</a></li>
-                <li><a href="shop.html" class="header-category" data-category="art">African Art & Collectibles</a></li>
-            </ul>
+    <li><a href="shop.html?category=all&label=All Products">All Products</a></li>
+    <li><a href="shop.html?category=clothing and fashion&label=Clothes%20%26%20Fashion">Clothes & Fashion</a></li>
+    <li><a href="shop.html?category=bags&label=Bags">Bags</a></li>
+    <li><a href="shop.html?category=home decor&label=Home%20Decor%20%26%20Entertainment">Home Decor & Entertainment</a></li>
+    <li><a href="shop.html?category=jewelry&label=Jewelry%20%26%20Accessories">Jewelry & Accessories</a></li>
+    <li><a href="shop.html?category=art&label=African%20Art%20%26%20Collectibles">African Art & Collectibles</a></li>
+</ul>
+
         </div>
     </div>
 </div>
@@ -330,1383 +331,234 @@
         </div>
     </div> -->
     <!--shipping area end -->
+
     <!--product section area start-->
-    <section class="product_section p_section1 product_bottom_two product9_bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="product_area">
-                        <div class="product_tab_button">
-                            <ul class="nav" role="tablist">
-                                <li>
-                                    <a class="active" data-bs-toggle="tab" href="#featured" role="tab"
-                                        aria-controls="featured" aria-selected="true">Featured</a>
-                                </li>
-                                <li>
-                                    <a data-bs-toggle="tab" href="#arrivals" role="tab" aria-controls="arrivals"
-                                        aria-selected="false">New Arrivals</a>
-                                </li>
-                                <li>
-                                    <a data-bs-toggle="tab" href="#onsale" role="tab" aria-controls="onsale"
-                                        aria-selected="false">Onsale</a>
-                                </li>
-
-                            </ul>
+<section class="product_section p_section1 product_bottom_two product9_bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="product_area">
+                    <div class="product_tab_button">
+                        <ul class="nav" role="tablist">
+                            <li>
+                                <a class="active" data-bs-toggle="tab" href="#featured" role="tab"
+                                    aria-controls="featured" aria-selected="true">Featured</a>
+                            </li>
+                            <li>
+                                <a data-bs-toggle="tab" href="#arrivals" role="tab" aria-controls="arrivals"
+                                    aria-selected="false">New Arrivals</a>
+                            </li>
+                            <li>
+                                <a data-bs-toggle="tab" href="#onsale" role="tab" aria-controls="onsale"
+                                    aria-selected="false">On Sale</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <!-- Featured Tab -->
+                        <div class="tab-pane fade show active" id="featured" role="tabpanel">
+                            <div class="product_container">
+                                <div class="custom-row product_column3">
+                                    <!-- Products will be loaded here dynamically -->
+                                    <div class="col-12 text-center">
+                                        <p>Loading featured products...</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="tab-content">
-                            <div class="tab-pane fade show active" id="featured" role="tabpanel">
-                                <div class="product_container">
-                                    <div class="custom-row product_column3">
 
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product1.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Maasai Fully Beaded Women Dress</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product10.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product13.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product2.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product3.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product4.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product5.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product6.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product7.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product8.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
+                        <!-- New Arrivals Tab -->
+                        <div class="tab-pane fade" id="arrivals" role="tabpanel">
+                            <div class="product_container">
+                                <div class="custom-row product_column3">
+                                    <!-- Products will be loaded here dynamically -->
+                                    <div class="col-12 text-center">
+                                        <p>Loading new arrivals...</p>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-
-                            <div class="tab-pane fade" id="arrivals" role="tabpanel">
-                                <div class="product_container">
-                                    <div class="custom-row product_column3">
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product9.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product10.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product11.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product12.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product13.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product14.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product1.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product4.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product3.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product2.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="tab-pane fade" id="onsale" role="tabpanel">
-                                <div class="product_container">
-                                    <div class="custom-row product_column3">
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product5.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product6.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product7.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product8.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product9.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product10.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product11.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product12.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product13.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        <div class="custom-col-5">
-                                            <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img"><img src="assets/img/product/product14.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <!-- <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick view</a>
-                                            </div> -->
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a>Product Name</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price" data-price="2500">Ksh 2,500</span>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart">
-                                                            <a href="#" class="add-to-cart-btn"
-                                                                data-product-id="prod001"
-                                                                data-product-name="Maasai Beaded Necklace"
-                                                                data-product-price="2500"
-                                                                data-product-img="assets/img/product/product4.jpg">
-                                                                Add to Cart
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile button (duplicate functionality) -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="#" class="add-to-cart-btn" data-product-id="prod001"
-                                                    data-product-name="Maasai Beaded Necklace" data-product-price="2500"
-                                                    data-product-img="assets/img/product/product4.jpg">
-                                                    Add to Cart
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                        
-
+                        <!-- On Sale Tab -->
+                        <div class="tab-pane fade" id="onsale" role="tabpanel">
+                            <div class="product_container">
+                                <div class="custom-row product_column3">
+                                    <!-- Products will be loaded here dynamically -->
+                                    <div class="col-12 text-center">
+                                        <p>Loading sale products...</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
-    </section>
-    <!--product section area end-->
+    </div>
+</section>
+<!--product section area end-->
+
+<style>
+/* Product container and image sizing */
+.single_product {
+    background: #fff;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.single_product:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.product_thumb {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background: #f8f9fa;
+}
+
+.product_thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.single_product:hover .product_thumb img {
+    transform: scale(1.05);
+}
+
+.product_content {
+    padding: 15px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product_content h3 {
+    margin: 8px 0;
+    font-size: 16px;
+    line-height: 1.4;
+    height: 2.8em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.tag_cate {
+    margin-bottom: 5px;
+}
+
+.tag_cate span {
+    font-size: 12px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.price_box {
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.current_price {
+    color: #e74c3c;
+    font-size: 18px;
+}
+
+.old_price {
+    color: #999;
+    text-decoration: line-through;
+    margin-left: 8px;
+    font-size: 14px;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+    .product_container {
+        overflow: hidden;
+        padding: 0 15px;
+    }
+    
+    .product_column3 {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        padding: 10px 0;
+        gap: 15px;
+        justify-content: flex-start;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+    }
+    
+    .product_column3::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+    
+    .custom-col-5 {
+        flex: 0 0 85%;
+        scroll-snap-align: center;
+        min-width: 0;
+        margin: 0 auto;
+        height: 400px; /* Fixed height for mobile */
+    }
+    
+    .single_product {
+        width: 100%;
+        margin: 0 auto;
+        height: 100%;
+    }
+    
+    .product_thumb {
+        height: 220px; /* Slightly smaller for mobile */
+    }
+    
+    .product_content {
+        padding: 12px;
+    }
+    
+    .product_content h3 {
+        font-size: 14px;
+        height: 2.5em;
+    }
+    
+    .current_price {
+        font-size: 16px;
+    }
+}
+
+/* Desktop-specific styles */
+@media (min-width: 769px) {
+    .product_column3 {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+    }
+    
+    .custom-col-5 {
+        flex: 0 0 calc(20% - 12px);
+        height: 420px; /* Fixed height for desktop */
+    }
+    
+    .single_product {
+        height: 100%;
+    }
+}
+</style>
 
     <!--banner area start-->
     <section class="banner_section home_banner_two home_banner9">
@@ -1746,308 +598,134 @@
     </section>
     <!--banner area end-->
 
-    <!--product section area start-->
-    <section class="product_section p_bottom p_section1">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section_title">
-                        <h2>Bestselling Products</h2>
-                    </div>
+    <!-- Bestselling Products Section -->
+<section class="product_section p_bottom p_section1">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section_title">
+                    <h2>Bestselling Products</h2>
                 </div>
-                <div class="col-12">
-                    <div class="product_area ">
-                        <div class="product_container bottom">
-                            <div class="custom-row product_row1">
-                                <div class="custom-col-5">
-                                    <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img" ><img
-                                                    src="assets/img/product/product14.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick
-                                                    view</a>
-                                            </div>
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a >Maasai Beaded Necklace</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price">Ksh 2,500</span>
-                                            </div>
-                                            <!-- Mobile-only Add to Cart Button -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="cart.html">Add to Cart</a>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart"><a href="" title="add to cart">add to
-                                                                cart</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="custom-col-5">
-                                    <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img" ><img
-                                                    src="assets/img/product/product13.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick
-                                                    view</a>
-                                            </div>
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a >Maasai Beaded Necklace</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price">Ksh 2,500</span>
-                                            </div>
-                                            <!-- Mobile-only Add to Cart Button -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="cart.html">Add to Cart</a>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart"><a href="" title="add to cart">add to
-                                                                cart</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="custom-col-5">
-                                    <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img" ><img
-                                                    src="assets/img/product/product6.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick
-                                                    view</a>
-                                            </div>
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a >Maasai Beaded Necklace</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price">Ksh 2,500</span>
-                                            </div>
-                                            <!-- Mobile-only Add to Cart Button -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="cart.html">Add to Cart</a>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart"><a href="" title="add to cart">add to
-                                                                cart</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="custom-col-5">
-                                    <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img" ><img
-                                                    src="assets/img/product/product7.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick
-                                                    view</a>
-                                            </div>
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a >Maasai Beaded Necklace</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price">Ksh 2,500</span>
-                                            </div>
-                                            <!-- Mobile-only Add to Cart Button -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="cart.html">Add to Cart</a>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart"><a href="" title="add to cart">add to
-                                                                cart</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="custom-col-5">
-                                    <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img" ><img
-                                                    src="assets/img/product/product9.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick
-                                                    view</a>
-                                            </div>
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a >Maasai Beaded Necklace</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price">Ksh 2,500</span>
-                                            </div>
-                                            <!-- Mobile-only Add to Cart Button -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="cart.html">Add to Cart</a>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart"><a href="" title="add to cart">add to
-                                                                cart</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="custom-col-5">
-                                    <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img" ><img
-                                                    src="assets/img/product/product8.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick
-                                                    view</a>
-                                            </div>
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a >Maasai Beaded Necklace</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price">Ksh 2,500</span>
-                                            </div>
-                                            <!-- Mobile-only Add to Cart Button -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="cart.html">Add to Cart</a>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart"><a href="" title="add to cart">add to
-                                                                cart</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="custom-col-5">
-                                    <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img" ><img
-                                                    src="assets/img/product/product1.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick
-                                                    view</a>
-                                            </div>
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a >Maasai Beaded Necklace</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price">Ksh 2,500</span>
-                                            </div>
-                                            <!-- Mobile-only Add to Cart Button -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="cart.html">Add to Cart</a>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart"><a href="" title="add to cart">add to
-                                                                cart</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="custom-col-5">
-                                    <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a class="primary_img" ><img
-                                                    src="assets/img/product/product2.jpg"
-                                                    alt="Maasai Beaded Necklace"></a>
-                                            <div class="quick_button">
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                    data-placement="top" data-original-title="quick view">quick
-                                                    view</a>
-                                            </div>
-                                        </div>
-                                        <div class="product_content">
-                                            <div class="tag_cate">
-                                                <span>Jewelry</span>
-                                            </div>
-                                            <h3><a >Maasai Beaded Necklace</a></h3>
-                                            <div class="price_box">
-                                                <span class="current_price">Ksh 2,500</span>
-                                            </div>
-                                            <!-- Mobile-only Add to Cart Button -->
-                                            <div class="mobile_add_to_cart">
-                                                <a href="cart.html">Add to Cart</a>
-                                            </div>
-                                            <div class="product_hover">
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart"><a href="" title="add to cart">add to
-                                                                cart</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+            </div>
+            <div class="col-12">
+                <div class="product_area">
+                    <div class="product_container bottom">
+                        <!-- Slider container -->
+                        <div class="product-slider-container">
+                            <div class="product-slider">
+                                <!-- Products will be inserted here by JavaScript -->
                             </div>
+                            <!-- Navigation arrows -->
+                            <button class="slider-prev" aria-label="Previous products">&#10094;</button>
+                            <button class="slider-next" aria-label="Next products">&#10095;</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!--product section area end-->
+    </div>
+</section>
+<!--product section area end-->
+
+   <style>
+/* Slider Styles */
+.product-slider-container {
+    position: relative;
+    overflow: hidden;
+    padding: 0 40px; /* Space for arrows */
+}
+
+.product-slider {
+    display: flex;
+    transition: transform 0.5s ease;
+    gap: 15px;
+    padding: 10px 0;
+}
+
+.single_product {
+    flex: 0 0 calc(20% - 12px); /* 5 products per view */
+    min-width: 0; /* Fixes flexbox overflow */
+    box-sizing: border-box;
+    padding: 0 5px;
+}
+
+.product_thumb img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    transform: scale(1.05); /* Slight zoom */
+}
+
+.product_thumb img:hover {
+    transform: scale(1.1); /* Zoom on hover */
+}
+
+/* Navigation buttons */
+.slider-prev, .slider-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 20px;
+}
+
+.slider-prev {
+    left: 0;
+}
+
+.slider-next {
+    right: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .single_product {
+        flex: 0 0 calc(25% - 12px); /* 4 products on smaller desktop */
+    }
+}
+
+@media (max-width: 992px) {
+    .single_product {
+        flex: 0 0 calc(33.333% - 12px); /* 3 products on tablet */
+    }
+}
+
+@media (max-width: 768px) {
+    .single_product {
+        flex: 0 0 calc(50% - 12px); /* 2 products on mobile */
+    }
     
+    .product-slider-container {
+        padding: 0 0px;
+    }
+    
+    .slider-prev, .slider-next {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .single_product {
+        flex: 0 0 calc(100% - 12px); /* 1 product on small mobile */
+        text-align: center; /* Center content on mobile */
+    }
+    
+    .product_thumb img {
+        max-width: 80%;
+        margin: 0 auto;
+        display: block;
+    }
+}
+</style> 
 
     <!--blog section area start-->
     <!-- <section class="blog_section">
@@ -2168,32 +846,83 @@
     </section> -->
     <!--blog section area end-->
 
-    <!--Newsletter area start-->
-    <div class="newsletter_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="newsletter_content">
-                        <h2>Our Newsletter</h2>
-                        <p>Get E-mail updates about our latest shop and special offers.</p>
-                        <div class="subscribe_form">
-                            <form id="mc-form" class="mc-form footer-newsletter">
-                                <input id="mc-email" type="email" autocomplete="off" placeholder="Email address..." />
-                                <button id="mc-submit">Subscribe</button>
-                            </form>
-                            <!-- mailchimp-alerts Start -->
-                            <div class="mailchimp-alerts text-centre">
-                                <div class="mailchimp-submitting"></div><!-- mailchimp-submitting end -->
-                                <div class="mailchimp-success"></div><!-- mailchimp-success end -->
-                                <div class="mailchimp-error"></div><!-- mailchimp-error end -->
-                            </div><!-- mailchimp-alerts end -->
+<!--Newsletter area start-->
+<div class="newsletter_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="newsletter_content">
+                    <h2>Our Newsletter</h2>
+                    <p>Get E-mail updates about our latest Maasai crafts and special offers.</p>
+                    <div class="subscribe_form">
+                        <form id="newsletter-form" class="mc-form footer-newsletter" method="POST" action="https://api.web3forms.com/submit">
+                            <input type="hidden" name="access_key" value="0e1eddcf-3892-41a6-aa8a-8f5ecf573890">
+                            <input type="hidden" name="subject" value="New Newsletter Subscription">
+                            <!-- Removed redirect -->
+                            <input type="text" name="Newsletter Subscription" style="display:none">
+                            
+                            <input id="mc-email" name="email" type="email" autocomplete="off" placeholder="Email address..." required>
+                            <button id="mc-submit" type="submit">Subscribe</button>
+                        </form>
+                        <!-- Web3Forms Alerts -->
+                        <div class="web3forms-alerts">
+                            <div class="web3forms-submitting" style="display:none;">Submitting...</div>
+                            <div class="web3forms-success" style="display:none; color:green;">Thank you for subscribing!</div>
+                            <div class="web3forms-error" style="display:none; color:red;">Error submitting form. Please try again.</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!--Newsletter area start-->
+</div>
+
+<script>
+    const newsletterForm = document.getElementById('newsletter-form');
+    const submitting = document.querySelector('.web3forms-submitting');
+    const success = document.querySelector('.web3forms-success');
+    const error = document.querySelector('.web3forms-error');
+
+    newsletterForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Reset messages
+        submitting.style.display = 'none';
+        success.style.display = 'none';
+        error.style.display = 'none';
+        
+        // Show submitting
+        submitting.style.display = 'block';
+        
+        fetch(newsletterForm.action, {
+            method: 'POST',
+            body: new FormData(newsletterForm)
+        })
+        .then(response => response.json())
+        .then(data => {
+            submitting.style.display = 'none';
+            
+            if (data.success) {
+                success.style.display = 'block';
+                newsletterForm.reset();
+                
+                // Hide success after 5 seconds
+                setTimeout(() => {
+                    success.style.display = 'none';
+                }, 5000);
+            } else {
+                error.style.display = 'block';
+                error.textContent = data.message || 'Error submitting form. Please try again.';
+            }
+        })
+        .catch(err => {
+            submitting.style.display = 'none';
+            error.style.display = 'block';
+            error.textContent = 'Network error. Please check your connection.';
+        });
+    });
+</script>
+<!--Newsletter area end-->
 
     <!--footer area start-->
     <footer class="footer_widgets">
@@ -2229,7 +958,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://www.instagram.com/missnaeku/" target="_blank"
+                                        <a href="https://www.instagram.com/nasiekucreations/" target="_blank"
                                             rel="noopener noreferrer">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="#E4405F">
@@ -2267,17 +996,81 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
-                        <div class="widgets_container newsletter">
-                            <h3>Join Our Community</h3>
-                            <p>Subscribe for updates on new collections and our empowerment initiatives</p>
-                            <div class="subscribe_form">
-                                <form action="#">
-                                    <input placeholder="Your email address..." type="text">
-                                    <button type="submit">Subscribe</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+    <div class="widgets_container newsletter">
+        <h3>Join Our Community</h3>
+        <p>Subscribe for updates on new Maasai collections and our women's empowerment initiatives</p>
+        <div class="subscribe_form">
+            <form id="sidebar-newsletter-form" method="POST" action="https://api.web3forms.com/submit">
+                <input type="hidden" name="access_key" value="0e1eddcf-3892-41a6-aa8a-8f5ecf573890">
+                <input type="hidden" name="subject" value="Community Newsletter Subscription">
+                <!-- Remove redirect since you want to stay on page -->
+                <input type="text" name="Community Subscription" style="display:none"> <!-- Add honeypot -->
+                
+                <input name="email" placeholder="Your email address..." type="email" required>
+                <button type="submit">Subscribe</button>
+                
+                <div class="web3forms-feedback" style="margin-top: 10px; font-size: 14px;">
+                    <div class="web3forms-submitting" style="display: none; color: #666;">Submitting...</div>
+                    <div class="web3forms-success" style="display: none; color: #28a745;">Thank you for subscribing!</div>
+                    <div class="web3forms-error" style="display: none; color: #dc3545;">Error: Please try again later.</div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('sidebar-newsletter-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const form = e.target;
+        const submitting = form.querySelector('.web3forms-submitting');
+        const success = form.querySelector('.web3forms-success');
+        const error = form.querySelector('.web3forms-error');
+        
+        // Reset messages
+        submitting.style.display = 'none';
+        success.style.display = 'none';
+        error.style.display = 'none';
+        
+        // Show submitting
+        submitting.style.display = 'block';
+        
+        // Create new FormData and append additional fields
+        const formData = new FormData(form);
+        formData.append('from_name', 'Newsletter Subscription');
+        
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(async response => {
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.message || 'Submission failed');
+            }
+            return data;
+        })
+        .then(data => {
+            submitting.style.display = 'none';
+            if (data.success) {
+                success.style.display = 'block';
+                form.reset();
+                setTimeout(() => success.style.display = 'none', 5000);
+            } else {
+                throw new Error(data.message || 'Submission failed');
+            }
+        })
+        .catch(error => {
+            submitting.style.display = 'none';
+            errorEl.style.display = 'block';
+            errorEl.textContent = error.message || 'Network error. Please try again.';
+            console.error('Form submission error:', error);
+        });
+    });
+</script>
                 </div>
             </div>
             <div class="footer_bottom">
@@ -2294,134 +1087,6 @@
     </footer>
     <!--footer area end-->
 
-    <!-- modal area start-->
-    <div class="modal fade" id="modal_box" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <div class="modal_body">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-5 col-md-5 col-sm-12">
-                                <div class="modal_tab">
-                                    <div class="tab-content product-details-large">
-                                        <div class="tab-pane fade show active" id="tab1" role="tabpanel">
-                                            <div class="modal_tab_img">
-                                                <a href="#"><img src="assets/img/product/product1.jpg" alt=""></a>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="tab2" role="tabpanel">
-                                            <div class="modal_tab_img">
-                                                <a href="#"><img src="assets/img/product/product2.jpg" alt=""></a>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="tab3" role="tabpanel">
-                                            <div class="modal_tab_img">
-                                                <a href="#"><img src="assets/img/product/product3.jpg" alt=""></a>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="tab4" role="tabpanel">
-                                            <div class="modal_tab_img">
-                                                <a href="#"><img src="assets/img/product/product5.jpg" alt=""></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- <div class="modal_tab_button">
-                                        <ul class="nav product_navactive owl-carousel" role="tablist">
-                                            <li>
-                                                <a class="nav-link active" data-bs-toggle="tab" href="#tab1" role="tab"
-                                                    aria-controls="tab1" aria-selected="false"><img
-                                                        src="assets/img/product/product1.jpg" alt=""></a>
-                                            </li>
-                                            <li>
-                                                <a class="nav-link" data-bs-toggle="tab" href="#tab2" role="tab"
-                                                    aria-controls="tab2" aria-selected="false"><img
-                                                        src="assets/img/product/product2.jpg" alt=""></a>
-                                            </li>
-                                            <li>
-                                                <a class="nav-link button_three" data-bs-toggle="tab" href="#tab3"
-                                                    role="tab" aria-controls="tab3" aria-selected="false"><img
-                                                        src="assets/img/product/product3.jpg" alt=""></a>
-                                            </li>
-                                            <li>
-                                                <a class="nav-link" data-bs-toggle="tab" href="#tab4" role="tab"
-                                                    aria-controls="tab4" aria-selected="false"><img
-                                                        src="assets/img/product/product5.jpg" alt=""></a>
-                                            </li>
-
-                                        </ul>
-                                    </div> -->
-                                </div>
-                            </div>
-                            <div class="col-lg-7 col-md-7 col-sm-12">
-                                <div class="modal_right">
-                                    <div class="modal_title mb-10">
-                                        <h2>Donec eu furniture</h2>
-                                    </div>
-                                    <div class="modal_price mb-10">
-                                        <span class="new_price">$64.99</span>
-                                        <span class="old_price">$78.99</span>
-                                    </div>
-                                    <div class="see_all">
-                                        <a >See all features</a>
-                                    </div>
-                                    <div class="modal_add_to_cart mb-15">
-                                        <form action="#">
-                                            <input min="0" max="100" step="2" value="1" type="number">
-                                            <button type="submit">add to cart</button>
-                                        </form>
-                                    </div>
-                                    <div class="modal_description mb-15">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                        </p>
-                                    </div>
-                                    <div class="modal_social">
-                                        <h2>Share this product</h2>
-                                        <ul class="social_icons">
-                                    <li>
-                                        <a href="https://www.facebook.com/people/Nasieku-Luxury-Creations/100066309080077/"
-                                            target="_blank" rel="noopener noreferrer">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="#1877F2">
-                                                <path
-                                                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
-                                            </svg>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.tiktok.com/@naeku_luxcreations" target="_blank"
-                                            rel="noopener noreferrer">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="#000000">
-                                                <path
-                                                    d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
-                                            </svg>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.instagram.com/missnaeku/" target="_blank"
-                                            rel="noopener noreferrer">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="#E4405F">
-                                                <path
-                                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-                                            </svg>
-                                        </a>
-                                    </li>
-                                </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- modal area start-->
 
 
 
@@ -2445,12 +1110,15 @@
     <script src="assets/js/jquery.cookie.js"></script>
     <script src="assets/js/bpopup.js"></script>
     <script src="assets/js/cart.js"></script>
-    <script src="assets/js/header-categories.js"></script>
     <script src="assets/js/search.js"></script>
     <script src="assets/js/globalsearch.js"></script>
+    <script src="assets/js/header-categories.js"></script>
+    <script src="assets/js/bestseller-loader.js"></script>
+    
 
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/index-prd-tabs.js"></script>
 
 </body>
 

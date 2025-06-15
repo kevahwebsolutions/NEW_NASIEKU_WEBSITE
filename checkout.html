@@ -75,7 +75,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://www.instagram.com/missnaeku/" target="_blank"
+                                        <a href="https://www.instagram.com/nasiekucreations/" target="_blank"
                                             rel="noopener noreferrer">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="#E4405F">
@@ -182,13 +182,13 @@
         </div>
         <div class="categories_menu_toggle">
             <ul>
-                <li><a href="shop.html" class="header-category" data-category="all">All Products</a></li>
-                <li><a href="shop.html" class="header-category" data-category="clothing and fashion">Clothes & Fashion</a></li>
-                <li><a href="shop.html" class="header-category" data-category="bags">Bags</a></li>
-                <li><a href="shop.html" class="header-category" data-category="home decor">Home Decor & Entertainment</a></li>
-                <li><a href="shop.html" class="header-category" data-category="jewelry">Jewelry & Accessories</a></li>
-                <li><a href="shop.html" class="header-category" data-category="art">African Art & Collectibles</a></li>
-            </ul>
+    <li><a href="shop.html?category=all&label=All Products">All Products</a></li>
+    <li><a href="shop.html?category=clothing and fashion&label=Clothes%20%26%20Fashion">Clothes & Fashion</a></li>
+    <li><a href="shop.html?category=bags&label=Bags">Bags</a></li>
+    <li><a href="shop.html?category=home decor&label=Home%20Decor%20%26%20Entertainment">Home Decor & Entertainment</a></li>
+    <li><a href="shop.html?category=jewelry&label=Jewelry%20%26%20Accessories">Jewelry & Accessories</a></li>
+    <li><a href="shop.html?category=art&label=African%20Art%20%26%20Collectibles">African Art & Collectibles</a></li>
+</ul>
         </div>
     </div>
 </div>
@@ -267,7 +267,11 @@
   <div class="container">
     <div class="checkout_form">
       <form action="https://api.web3forms.com/submit" method="POST" id="order-form">
-        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+        <input type="hidden" name="access_key" value="0e1eddcf-3892-41a6-aa8a-8f5ecf573890" />
+        <input type="hidden" name="subject" value="🛍️ New Order #{{ORDER_NUMBER}} from Nasieku Website" />
+        <input type="hidden" name="from_name" value="Nasieku Orders" />
+        <input type="text" name="honeypot" style="display:none">
+        
         <div class="row">
           <!-- Shipping Details -->
           <div class="col-lg-6 col-md-6">
@@ -313,115 +317,238 @@
 
           <!-- Order Summary -->
           <div class="col-lg-6 col-md-6">
-            <h3>Your Order</h3>
+            <h3>Order Summary</h3>
             <div class="order_table table-responsive">
-              <table>
+              <table class="order-summary-table">
                 <thead>
                   <tr>
                     <th>Product</th>
+                    <th>Price</th>
+                    <th>Qty</th>
                     <th>Total</th>
                   </tr>
                 </thead>
-                <tbody id="mini-cart-items">
-                  <!-- Mini cart items dynamically inserted here -->
+                <tbody id="order-summary-items">
+                  <!-- Products will be inserted here by JavaScript -->
                 </tbody>
                 <tfoot>
                   <tr>
-                    <th>Shipping</th>
-                    <td><strong>Ksh 400</strong></td>
+                    <td colspan="3">Subtotal</td>
+                    <td id="order-subtotal">Ksh 0</td>
                   </tr>
-                  <tr class="order_total">
-                    <th>Order Total</th>
-                    <td><strong id="order-total">Ksh 0</strong></td>
+                  <tr>
+                    <td colspan="3">Shipping</td>
+                    <td>Ksh 400</td>
+                  </tr>
+                  <tr class="total-row">
+                    <td colspan="3"><strong>Total</strong></td>
+                    <td><strong id="order-total">Ksh 400</strong></td>
                   </tr>
                 </tfoot>
               </table>
             </div>
             <div class="order_button mt-3">
-              <button type="submit">Submit Order</button>
+              <button type="submit" id="submit-btn">Place Order</button>
             </div>
-            <div id="success-message" style="display:none; margin-top: 20px; text-align: center; color: green;">
-              <div style="font-size: 48px;">✅</div>
-              <strong>Order submitted successfully!</strong>
-            </div>
+            <div id="order-status"></div>
           </div>
         </div>
       </form>
     </div>
   </div>
 </div>
-<!-- Checkout Page Section End -->
 
-<!-- Mini-cart to Order Summary Sync Script -->
+
 <script>
-  const cartItems = JSON.parse(localStorage.getItem('nasieku_cart') || '[]');
-  const itemsContainer = document.getElementById('mini-cart-items');
-  const orderTotal = document.getElementById('order-total');
-  const form = document.getElementById('order-form');
-  const successMsg = document.getElementById('success-message');
+document.addEventListener('DOMContentLoaded', function() {
+    const cart = JSON.parse(localStorage.getItem('nasieku_cart')) || [];
+    const orderItemsContainer = document.getElementById('order-summary-items');
+    const orderSubtotal = document.getElementById('order-subtotal');
+    const orderTotal = document.getElementById('order-total');
+    const form = document.getElementById('order-form');
+    
+    // Generate order number
+    const orderNumber = 'NSK-' + Math.floor(100000 + Math.random() * 900000);
+    form.innerHTML += `<input type="hidden" name="order_number" value="${orderNumber}">`;
 
-  let subtotal = 0;
-  cartItems.forEach(item => {
-    const itemRow = document.createElement('tr');
-    itemRow.innerHTML = `
-      <td>${item.name} <strong>× ${item.quantity}</strong>
-        <input type="hidden" name="products[]" value="${item.name} x${item.quantity}">
-      </td>
-      <td>Ksh ${item.price * item.quantity}</td>
-    `;
-    subtotal += item.price * item.quantity;
-    itemsContainer.appendChild(itemRow);
-  });
-
-  const shipping = 400;
-  orderTotal.textContent = `Ksh ${subtotal + shipping}`;
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    const formData = new FormData(form);
-    fetch(form.action, {
-      method: 'POST',
-      body: formData
-    }).then(response => {
-      if (response.ok) {
-        form.reset();
-        successMsg.style.display = 'block';
-        localStorage.removeItem('nasieku_cart');
-      } else {
-        alert('There was a problem submitting your order. Please try again.');
-      }
-    });
-  });
-  form.addEventListener('submit', function (e) {
-  e.preventDefault();
-  const formData = new FormData(form);
-  fetch(form.action, {
-    method: 'POST',
-    body: formData
-  }).then(response => {
-    if (response.ok) {
-      form.reset();
-      successMsg.style.display = 'block';
-
-      // Clear cart
-      localStorage.removeItem('nasieku_cart');
-      itemsContainer.innerHTML = ''; // Clear order summary table
-      orderTotal.textContent = 'Ksh 0'; // Reset total
-
-      // Optional: Update cart quantity icon in header (if any)
-      const cartCount = document.querySelector('.cart_quantity');
-      const cartText = document.querySelector('.cart_link .cart_text_quantity');
-      if (cartCount) cartCount.textContent = '0';
-      if (cartText) cartText.textContent = 'Ksh 0';
-    } else {
-      alert('There was a problem submitting your order. Please try again.');
+    // Display order summary
+    function displayOrderSummary() {
+        let subtotal = 0;
+        let productsHTML = '';
+        let emailProducts = '';
+        
+        if (cart.length === 0) {
+            productsHTML = '<tr><td colspan="4" style="text-align:center;">Your cart is empty</td></tr>';
+        } else {
+            cart.forEach((item) => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                
+                // For website display
+                productsHTML += `
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>Ksh ${item.price.toLocaleString()}</td>
+                        <td>${item.quantity}</td>
+                        <td>Ksh ${itemTotal.toLocaleString()}</td>
+                    </tr>
+                `;
+                
+                // For email
+                emailProducts += `${item.name} (Qty: ${item.quantity}) - Ksh ${itemTotal.toLocaleString()}\n`;
+            });
+        }
+        
+        orderItemsContainer.innerHTML = productsHTML;
+        const shipping = 400;
+        const total = subtotal + shipping;
+        
+        orderSubtotal.textContent = `Ksh ${subtotal.toLocaleString()}`;
+        orderTotal.textContent = `Ksh ${total.toLocaleString()}`;
+        
+        // Add formatted order details for email (only this will show in email)
+        form.innerHTML += `
+            <input type="hidden" name="order_details" value="
+            ORDER #${orderNumber}
+            --------------------------
+            ${emailProducts}
+            --------------------------
+            Subtotal: Ksh ${subtotal.toLocaleString()}
+            Shipping: Ksh 400
+            Total: Ksh ${total.toLocaleString()}
+            ">
+        `;
     }
-  });
-});
 
+    // Initialize order summary display
+    displayOrderSummary();
+
+    // Form submission
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        if (cart.length === 0) {
+            alert('Your cart is empty!');
+            return;
+        }
+
+        const submitBtn = document.getElementById('submit-btn');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Processing...';
+        
+        // Show loading state
+        document.getElementById('order-status').innerHTML = `
+            <div class="order-status-loading">
+                <div class="spinner"></div>
+                <p>Processing your order...</p>
+            </div>
+        `;
+
+        try {
+            const formData = new FormData(form);
+            formData.append('order_date', new Date().toLocaleString('en-KE', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            }));
+            
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                // Show success
+                document.getElementById('order-status').innerHTML = `
+                    <div class="order-status-success">
+                        <svg viewBox="0 0 24 24" width="48" height="48">
+                            <path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M10 17L5 12l1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <h4>Order #${orderNumber} Confirmed!</h4>
+                        <p>Thank you for your purchase. We'll contact you shortly.</p>
+                    </div>
+                `;
+                
+                // Clear cart
+                localStorage.removeItem('nasieku_cart');
+            } else {
+                throw new Error(data.message || 'Order submission failed');
+            }
+        } catch (error) {
+            document.getElementById('order-status').innerHTML = `
+                <div class="order-status-error">
+                    <svg viewBox="0 0 24 24" width="48" height="48">
+                        <path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/>
+                    </svg>
+                    <h4>Order Submission Failed</h4>
+                    <p>${error.message || 'Please try again or contact us'}</p>
+                </div>
+            `;
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Place Order';
+        }
+    });
+});
 </script>
 
-
+<style>
+.order-summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+.order-summary-table th, 
+.order-summary-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+.order-summary-table th {
+    font-weight: 600;
+    background-color: #f9f9f9;
+}
+.total-row td {
+    border-top: 2px solid #eee;
+    font-size: 1.1em;
+}
+.order-status-loading, 
+.order-status-success, 
+.order-status-error {
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 4px;
+}
+.order-status-loading {
+    background-color: #f8f8f8;
+}
+.order-status-success {
+    background-color: #f0fff0;
+    color: #2e7d32;
+}
+.order-status-error {
+    background-color: #fff0f0;
+    color: #c62828;
+}
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 15px;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
  
     <!--footer area start-->
     <footer class="footer_widgets">
@@ -457,7 +584,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://www.instagram.com/missnaeku/" target="_blank"
+                                        <a href="https://www.instagram.com/nasiekucreations/" target="_blank"
                                             rel="noopener noreferrer">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="#E4405F">
@@ -495,17 +622,81 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
-                        <div class="widgets_container newsletter">
-                            <h3>Join Our Community</h3>
-                            <p>Subscribe for updates on new collections and our empowerment initiatives</p>
-                            <div class="subscribe_form">
-                                <form action="#">
-                                    <input placeholder="Your email address..." type="text">
-                                    <button type="submit">Subscribe</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+    <div class="widgets_container newsletter">
+        <h3>Join Our Community</h3>
+        <p>Subscribe for updates on new Maasai collections and our women's empowerment initiatives</p>
+        <div class="subscribe_form">
+            <form id="sidebar-newsletter-form" method="POST" action="https://api.web3forms.com/submit">
+                <input type="hidden" name="access_key" value="0e1eddcf-3892-41a6-aa8a-8f5ecf573890">
+                <input type="hidden" name="subject" value="Community Newsletter Subscription">
+                <!-- Remove redirect since you want to stay on page -->
+                <input type="text" name="Community Subscription" style="display:none"> <!-- Add honeypot -->
+                
+                <input name="email" placeholder="Your email address..." type="email" required>
+                <button type="submit">Subscribe</button>
+                
+                <div class="web3forms-feedback" style="margin-top: 10px; font-size: 14px;">
+                    <div class="web3forms-submitting" style="display: none; color: #666;">Submitting...</div>
+                    <div class="web3forms-success" style="display: none; color: #28a745;">Thank you for subscribing!</div>
+                    <div class="web3forms-error" style="display: none; color: #dc3545;">Error: Please try again later.</div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('sidebar-newsletter-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const form = e.target;
+        const submitting = form.querySelector('.web3forms-submitting');
+        const success = form.querySelector('.web3forms-success');
+        const error = form.querySelector('.web3forms-error');
+        
+        // Reset messages
+        submitting.style.display = 'none';
+        success.style.display = 'none';
+        error.style.display = 'none';
+        
+        // Show submitting
+        submitting.style.display = 'block';
+        
+        // Create new FormData and append additional fields
+        const formData = new FormData(form);
+        formData.append('from_name', 'Newsletter Subscription');
+        
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(async response => {
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.message || 'Submission failed');
+            }
+            return data;
+        })
+        .then(data => {
+            submitting.style.display = 'none';
+            if (data.success) {
+                success.style.display = 'block';
+                form.reset();
+                setTimeout(() => success.style.display = 'none', 5000);
+            } else {
+                throw new Error(data.message || 'Submission failed');
+            }
+        })
+        .catch(error => {
+            submitting.style.display = 'none';
+            errorEl.style.display = 'block';
+            errorEl.textContent = error.message || 'Network error. Please try again.';
+            console.error('Form submission error:', error);
+        });
+    });
+</script>
                 </div>
             </div>
             <div class="footer_bottom">
