@@ -1,4 +1,3 @@
-        
 document.addEventListener('DOMContentLoaded', function() {
     // Global variables
     let allProducts = [];
@@ -6,11 +5,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const productsPerPage = 12;
     let currentCategory = null;
 
+    // Get search parameter from URL
+    function getSearchFromUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('search') || '';
+    }
+
     // Fetch products from JSON file
     fetch('products.json')
     .then(response => response.json())
     .then(products => {
         allProducts = products;
+        
+        // Check if there's a search parameter in URL (takes priority)
+        const urlSearchTerm = getSearchFromUrl();
+        if (urlSearchTerm) {
+            // If there's a search term, delegate to search functionality
+            // Don't display products here, let search.js handle it
+            return;
+        }
         
         // Check if we came from header navigation - READ ONCE AND USE
         const fromHeaderNav = localStorage.getItem('fromHeaderNav') === 'true';
@@ -39,6 +52,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function displayProducts(products, category = null, page = 1) {
         const container = document.querySelector('.tab-pane.grid_view .row');
         const categoryTitle = document.querySelector('.current-category-title');
+        
+        if (!container || !categoryTitle) {
+            console.log('Product container or category title not found');
+            return;
+        }
+        
         container.innerHTML = ''; // Clear existing products
         
         // Update current category and page
@@ -206,17 +225,23 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add "All Products" link
         const allProductsLink = document.createElement('li');
         allProductsLink.innerHTML = '<a href="#" class="show-all">All Products</a>';
-        document.querySelector('.widget_categories ul').prepend(allProductsLink);
+        const categoriesList = document.querySelector('.widget_categories ul');
+        if (categoriesList) {
+            categoriesList.prepend(allProductsLink);
+        }
         
         // Handle "All Products" click
-        document.querySelector('.show-all').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelectorAll('.widget_categories a').forEach(link => {
-                link.classList.remove('active');
+        const showAllLink = document.querySelector('.show-all');
+        if (showAllLink) {
+            showAllLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.widget_categories a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
+                displayProducts(products);
             });
-            this.classList.add('active');
-            displayProducts(products);
-        });
+        }
 
         categoryLinks.forEach(link => {
             link.addEventListener('click', function(e) {
@@ -246,4 +271,12 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+    // Make functions available globally for search.js
+    window.shopFunctions = {
+        displayProducts: displayProducts,
+        updatePaginationControls: updatePaginationControls,
+        allProducts: () => allProducts,
+        productsPerPage: productsPerPage
+    };
 });

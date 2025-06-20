@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Only run this script on shop.html
+    if (!window.location.pathname.includes('shop.html')) {
+        return;
+    }
+
     // Global variables
     let allProducts = [];
     let currentSearchTerm = '';
@@ -59,28 +64,42 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Fetch products from JSON file
-    fetch('products.json')
-        .then(response => response.json())
-        .then(products => {
-            allProducts = products;
+    // Wait for products to be loaded and check for search parameter
+    function initializeSearch() {
+        // Check if products are loaded from shop.js
+        if (window.shopFunctions && window.shopFunctions.allProducts().length > 0) {
+            allProducts = window.shopFunctions.allProducts();
+            processSearchFromUrl();
+        } else {
+            // If shop.js hasn't loaded products yet, load them ourselves
+            fetch('products.json')
+                .then(response => response.json())
+                .then(products => {
+                    allProducts = products;
+                    processSearchFromUrl();
+                })
+                .catch(error => console.error('Error loading products:', error));
+        }
+    }
+
+    // Process search parameter from URL
+    function processSearchFromUrl() {
+        const urlSearchTerm = getSearchFromUrl();
+        if (urlSearchTerm) {
+            currentSearchTerm = urlSearchTerm.toLowerCase();
+            // Populate search inputs with the URL search term
+            if (mobileSearchInput) mobileSearchInput.value = urlSearchTerm;
+            if (desktopSearchInput) desktopSearchInput.value = urlSearchTerm;
             
-            // Check if there's a search parameter in URL
-            const urlSearchTerm = getSearchFromUrl();
-            if (urlSearchTerm) {
-                currentSearchTerm = urlSearchTerm.toLowerCase();
-                // Populate search inputs with the URL search term
-                if (mobileSearchInput) mobileSearchInput.value = urlSearchTerm;
-                if (desktopSearchInput) desktopSearchInput.value = urlSearchTerm;
-            }
-            
-            setupMobileSearch();
-            setupDesktopSearch();
-            
-            // Display products (filtered if search term exists)
+            // Display filtered products immediately
             filterAndDisplayProducts();
-        })
-        .catch(error => console.error('Error loading products:', error));
+        }
+        
+        // Set up search functionality
+        setupMobileSearch();
+        setupDesktopSearch();
+        syncSearchInputs();
+    }
 
     // Set up mobile search functionality
     function setupMobileSearch() {
@@ -97,15 +116,31 @@ document.addEventListener('DOMContentLoaded', function() {
             filterAndDisplayProducts();
             
             // Close the dropdown after search
-            dropdownSearch.classList.remove('active');
+            if (dropdownSearch) {
+                dropdownSearch.classList.remove('active');
+            }
         });
 
         // Real-time search as user types on mobile
         mobileSearchInput.addEventListener('input', function() {
-            currentSearchTerm = this.value.trim().toLowerCase();
-            updateUrlWithSearch(currentSearchTerm);
-            if (currentSearchTerm.length >= 3 || currentSearchTerm.length === 0) {
-                filterAndDisplayProducts();
+            const newSearchTerm = this.value.trim().toLowerCase();
+            
+            // Only update if search term actually changed
+            if (newSearchTerm !== currentSearchTerm) {
+                currentSearchTerm = newSearchTerm;
+                updateUrlWithSearch(currentSearchTerm);
+                
+                // Clear any existing timeout
+                if (window.searchTimeout) {
+                    clearTimeout(window.searchTimeout);
+                }
+                
+                // Debounce the search to avoid too many requests
+                window.searchTimeout = setTimeout(() => {
+                    if (currentSearchTerm.length >= 2 || currentSearchTerm.length === 0) {
+                        filterAndDisplayProducts();
+                    }
+                }, 300);
             }
         });
     }
@@ -127,10 +162,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Real-time search as user types on desktop
         desktopSearchInput.addEventListener('input', function() {
-            currentSearchTerm = this.value.trim().toLowerCase();
-            updateUrlWithSearch(currentSearchTerm);
-            if (currentSearchTerm.length >= 3 || currentSearchTerm.length === 0) {
-                filterAndDisplayProducts();
+            const newSearchTerm = this.value.trim().toLowerCase();
+            
+            // Only update if search term actually changed
+            if (newSearchTerm !== currentSearchTerm) {
+                currentSearchTerm = newSearchTerm;
+                updateUrlWithSearch(currentSearchTerm);
+                
+                // Clear any existing timeout
+                if (window.searchTimeout) {
+                    clearTimeout(window.searchTimeout);
+                }
+                
+                // Debounce the search to avoid too many requests
+                window.searchTimeout = setTimeout(() => {
+                    if (currentSearchTerm.length >= 2 || currentSearchTerm.length === 0) {
+                        filterAndDisplayProducts();
+                    }
+                }, 300);
             }
         });
     }
@@ -223,8 +272,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Update pagination if it exists
-        if (typeof updatePaginationControls === 'function') {
-            updatePaginationControls(filteredProducts.length);
+        if (window.shopFunctions && typeof window.shopFunctions.updatePaginationControls === 'function') {
+            window.shopFunctions.updatePaginationControls(filteredProducts.length);
         }
     }
 
@@ -241,9 +290,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Initialize search input sync
-    syncSearchInputs();
-
     // Handle browser back/forward buttons
     window.addEventListener('popstate', function() {
         const urlSearchTerm = getSearchFromUrl();
@@ -252,4 +298,80 @@ document.addEventListener('DOMContentLoaded', function() {
         if (desktopSearchInput) desktopSearchInput.value = urlSearchTerm;
         filterAndDisplayProducts();
     });
+
+    // Initialize search functionality
+    // Use setTimeout to ensure shop.js has time to load
+    setTimeout(initializeSearch, 100);
+
+    // Loading animation functions
+    function showLoadingAnimation() {
+        if (!productContainer) return;
+        
+        // Remove existing loading if any
+        hideLoadingAnimation();
+        
+        productContainer.innerHTML = `
+            <div class="col-12">
+                <div class="search-loading-container text-center py-5">
+                    <div class="search-loading-spinner">
+                        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                    <h4 class="mt-3 text-muted">Searching products...</h4>
+                    <p class="text-muted">Please wait while we find what you're looking for</p>
+                </div>
+            </div>
+        `;
+        
+        // Add loading styles if not already present
+        if (!document.getElementById('search-loading-styles')) {
+            const styles = document.createElement('style');
+            styles.id = 'search-loading-styles';
+            styles.textContent = `
+                .search-loading-container {
+                    min-height: 300px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                }
+                
+                .search-loading-spinner .spinner-border {
+                    animation: spin 1s linear infinite;
+                }
+                
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+                
+                .search-loading-spinner .spinner-border {
+                    border: 0.25em solid rgba(0,0,0,.1);
+                    border-right-color: transparent;
+                    border-radius: 50%;
+                    display: inline-block;
+                    width: 3rem;
+                    height: 3rem;
+                }
+                
+                .search-loading-container h4 {
+                    color: #6c757d;
+                    font-weight: 600;
+                    margin-top: 1rem;
+                }
+                
+                .search-loading-container p {
+                    color: #6c757d;
+                    font-size: 0.9rem;
+                }
+            `;
+            document.head.appendChild(styles);
+        }
+    }
+    
+    function hideLoadingAnimation() {
+        // Loading will be replaced by actual content, so no need to explicitly hide
+        // This function exists for consistency and future enhancements
+    }
 });

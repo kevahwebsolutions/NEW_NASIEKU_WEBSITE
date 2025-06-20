@@ -46,23 +46,15 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             const searchTerm = mobileSearchInput.value.trim();
             if (searchTerm) {
-                // Redirect to shop.html with search parameter
+                // Show loading state
+                showSearchLoading(mobileSearchInput);
+                
+                // Clear any category selection flags when searching
+                localStorage.removeItem('fromHeaderNav');
+                localStorage.removeItem('selectedCategory');
                 window.location.href = `shop.html?search=${encodeURIComponent(searchTerm)}`;
             }
         });
-
-        // Optional: Real-time search redirect (uncomment if you want instant redirect)
-        /*
-        mobileSearchInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                const searchTerm = this.value.trim();
-                if (searchTerm) {
-                    window.location.href = `shop.html?search=${encodeURIComponent(searchTerm)}`;
-                }
-            }
-        });
-        */
     }
 
     // Set up desktop search functionality
@@ -77,26 +69,45 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             const searchTerm = desktopSearchInput.value.trim();
             if (searchTerm) {
-                // Redirect to shop.html with search parameter
+                // Show loading state
+                showSearchLoading(desktopSearchInput);
+                
+                // Clear any category selection flags when searching
+                localStorage.removeItem('fromHeaderNav');
+                localStorage.removeItem('selectedCategory');
                 window.location.href = `shop.html?search=${encodeURIComponent(searchTerm)}`;
             }
         });
-
-        // Optional: Real-time search redirect (uncomment if you want instant redirect)
-        /*
-        desktopSearchInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                const searchTerm = this.value.trim();
-                if (searchTerm) {
-                    window.location.href = `shop.html?search=${encodeURIComponent(searchTerm)}`;
-                }
-            }
-        });
-        */
     }
 
-    // Sync search inputs (optional - keeps both search bars in sync)
+    // Show loading animation for search
+    function showSearchLoading(inputElement) {
+        const originalValue = inputElement.value;
+        const originalPlaceholder = inputElement.placeholder;
+        
+        inputElement.value = '';
+        inputElement.placeholder = 'Searching...';
+        inputElement.style.opacity = '0.6';
+        inputElement.disabled = true;
+        
+        // Create loading dots animation
+        let dots = 0;
+        const loadingInterval = setInterval(() => {
+            dots = (dots + 1) % 4;
+            inputElement.placeholder = 'Searching' + '.'.repeat(dots);
+        }, 500);
+        
+        // Clean up after a reasonable time (in case redirect takes time)
+        setTimeout(() => {
+            clearInterval(loadingInterval);
+            inputElement.value = originalValue;
+            inputElement.placeholder = originalPlaceholder;
+            inputElement.style.opacity = '1';
+            inputElement.disabled = false;
+        }, 3000);
+    }
+
+    // Sync search inputs (keeps both search bars in sync)
     function syncSearchInputs() {
         if (mobileSearchInput && desktopSearchInput) {
             mobileSearchInput.addEventListener('input', function() {

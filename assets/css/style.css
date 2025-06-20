@@ -5305,8 +5305,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   position: relative;
 }
 .product_content h3 {
-  line-height: 22px;
-  font-size: 15px;
+  line-height: 15px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: capitalize;
   position: relative;
@@ -11900,7 +11900,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
             display: block;
             font-weight: 500;
             text-transform: uppercase;
-            font-size: 14px;
+            font-size: 9px;
         }
         .mobile_add_to_cart a:hover {
             background-color: #b31818;
@@ -11999,8 +11999,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 .mobile_add_to_cart a {
     background: #d51c1e;
     color: white;
-    padding: 8px 15px;
-    border-radius: 4px;
+    padding: 0px 0px;
+    border-radius: 0px;
     display: block;
     text-align: center;
     margin-top: 10px;
@@ -12385,7 +12385,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 .product_thumb img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -12413,7 +12413,7 @@ h3 {
 }
 
 .price_box {
-    margin: 8px 0 12px;
+    margin: -12px 0 1px;
 }
 
 .current_price {
