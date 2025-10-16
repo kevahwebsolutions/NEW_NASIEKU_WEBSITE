@@ -366,12 +366,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const orderTotal = document.getElementById('order-total');
     const form = document.getElementById('order-form');
     
+    // Check if elements exist
+    if (!orderItemsContainer || !orderSubtotal || !orderTotal || !form) {
+        console.error('Required elements not found');
+        return;
+    }
+    
     const orderNumber = 'NSK-' + Math.floor(100000 + Math.random() * 900000);
-    const orderNumberInput = document.createElement('input');
-    orderNumberInput.type = 'hidden';
-    orderNumberInput.name = 'order_number';
-    orderNumberInput.value = orderNumber;
-    form.appendChild(orderNumberInput);
+    let calculatedTotal = 0;
 
     function displayOrderSummary() {
         let subtotal = 0;
@@ -407,29 +409,61 @@ document.addEventListener('DOMContentLoaded', function() {
         
         orderItemsContainer.innerHTML = productsHTML;
         const shipping = 400;
-        const total = subtotal + shipping;
+        calculatedTotal = subtotal + shipping;
         
         orderSubtotal.textContent = `Ksh ${subtotal.toLocaleString()}`;
-        orderTotal.textContent = `Ksh ${total.toLocaleString()}`;
+        orderTotal.textContent = `Ksh ${calculatedTotal.toLocaleString()}`;
         
-        const orderDetailsInput = document.createElement('input');
-        orderDetailsInput.type = 'hidden';
-        orderDetailsInput.name = 'order_details';
-        orderDetailsInput.value = `
-ORDER #${orderNumber}
---------------------------
-${emailProducts || 'No items'}
---------------------------
-Subtotal: Ksh ${subtotal.toLocaleString()}
-Shipping: Ksh 400
-Total: Ksh ${total.toLocaleString()}
-        `;
-        form.appendChild(orderDetailsInput);
+        return { subtotal, emailProducts };
     }
 
-    displayOrderSummary();
+    const orderData = displayOrderSummary();
 
-    form.addEventListener('submit', async function(e) {
+    // Payment Modal HTML
+    const paymentModalHTML = `
+        <div id="payment-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999; align-items: center; justify-content: center;">
+            <div style="background: white; padding: 30px; border-radius: 10px; max-width: 400px; width: 90%; text-align: center;">
+                <h3 style="margin-bottom: 20px; color: #333;">Complete Payment</h3>
+                <p style="margin-bottom: 20px; color: #666;">Enter your M-Pesa number to receive payment prompt</p>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; text-align: left; font-weight: 600;">M-Pesa Phone Number</label>
+                    <input type="tel" id="mpesa-phone" placeholder="0712345678 or 254712345678" 
+                           style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 5px; font-size: 16px;">
+                    <small style="display: block; margin-top: 5px; color: #999; text-align: left;">Format: 0712345678 or 254712345678</small>
+                </div>
+
+                <div style="margin-bottom: 20px; padding: 15px; background: #f8f8f8; border-radius: 5px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                        <span>Amount to Pay:</span>
+                        <strong>Ksh ${calculatedTotal.toLocaleString()}</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>Order #:</span>
+                        <strong>${orderNumber}</strong>
+                    </div>
+                </div>
+
+                <div id="payment-status" style="margin-bottom: 15px;"></div>
+
+                <div style="display: flex; gap: 10px;">
+                    <button type="button" id="cancel-payment-btn" style="flex: 1; padding: 12px; background: #ccc; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">Cancel</button>
+                    <button type="button" id="confirm-payment-btn" style="flex: 1; padding: 12px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: 600;">Pay Now</button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', paymentModalHTML);
+
+    const modal = document.getElementById('payment-modal');
+    const mpesaPhoneInput = document.getElementById('mpesa-phone');
+    const confirmPaymentBtn = document.getElementById('confirm-payment-btn');
+    const cancelPaymentBtn = document.getElementById('cancel-payment-btn');
+    const paymentStatus = document.getElementById('payment-status');
+
+    // Form submission - Show payment modal
+    form.addEventListener('submit', function(e) {
         e.preventDefault();
         
         if (cart.length === 0) {
@@ -438,71 +472,145 @@ Total: Ksh ${total.toLocaleString()}
             return;
         }
 
-        const submitBtn = document.getElementById('submit-btn');
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Processing...';
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+
+        modal.style.display = 'flex';
+        mpesaPhoneInput.focus();
+    });
+
+    // Cancel payment
+    cancelPaymentBtn.addEventListener('click', function() {
+        modal.style.display = 'none';
+        mpesaPhoneInput.value = '';
+        paymentStatus.innerHTML = '';
+        confirmPaymentBtn.disabled = false;
+        confirmPaymentBtn.textContent = 'Pay Now';
+        cancelPaymentBtn.disabled = false;
+    });
+
+    // Process payment
+    confirmPaymentBtn.addEventListener('click', async function() {
+        const phoneNumber = mpesaPhoneInput.value.trim();
         
-        document.getElementById('order-status').innerHTML = `
-            <div class="order-status-loading">
-                <div class="spinner"></div>
-                <p>Processing your order...</p>
+        if (!phoneNumber) {
+            alert('Please enter your M-Pesa phone number');
+            return;
+        }
+
+        const phoneRegex = /^(0|254|\+254)?[17]\d{8}$/;
+        if (!phoneRegex.test(phoneNumber.replace(/\s+/g, ''))) {
+            alert('Invalid phone number format. Use: 0712345678 or 254712345678');
+            return;
+        }
+
+        confirmPaymentBtn.disabled = true;
+        confirmPaymentBtn.textContent = 'Processing...';
+        cancelPaymentBtn.disabled = true;
+
+        paymentStatus.innerHTML = `
+            <div style="padding: 15px; background: #e3f2fd; border-radius: 5px; color: #1976d2;">
+                <div style="margin-bottom: 10px;">📱 Check your phone for M-Pesa prompt</div>
+                <div class="spinner" style="margin: 10px auto; border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite;"></div>
+                <small>Waiting for payment confirmation...</small>
             </div>
         `;
 
         try {
             const formData = new FormData(form);
-            formData.append('order_date', new Date().toLocaleString('en-KE', {
-                day: 'numeric',
-                month: 'short',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            }));
+            const orderDetails = {
+                first_name: formData.get('first_name'),
+                last_name: formData.get('last_name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                county: formData.get('county'),
+                city: formData.get('city'),
+                street_address: formData.get('street_address'),
+                apartment: formData.get('apartment'),
+                order_notes: formData.get('order_notes'),
+                order_number: orderNumber,
+                order_details: `
+ORDER #${orderNumber}
+--------------------------
+${orderData.emailProducts}
+--------------------------
+Subtotal: Ksh ${orderData.subtotal.toLocaleString()}
+Shipping: Ksh 400
+Total: Ksh ${calculatedTotal.toLocaleString()}
+                `
+            };
+
+            console.log('Sending payment request...');
             
             const response = await fetch('https://nasieku-payment-backend.vercel.app/api/process-payment', {
                 method: 'POST',
-                body: formData
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    phone_number: phoneNumber,
+                    amount: calculatedTotal,
+                    order_number: orderNumber,
+                    customer_name: `${orderDetails.first_name} ${orderDetails.last_name}`,
+                    customer_email: orderDetails.email,
+                    order_details: orderDetails
+                })
             });
+
+            console.log('Response status:', response.status);
             
-            const data = await response.json();
-            
-            if (data.success) {
-                document.getElementById('order-status').innerHTML = `
-                    <div class="order-status-success">
-                        <svg viewBox="0 0 24 24" width="48" height="48">
+            const result = await response.json();
+            console.log('Response data:', result);
+
+            if (result.success) {
+                paymentStatus.innerHTML = `
+                    <div style="padding: 20px; background: #d4edda; border-radius: 5px; color: #155724;">
+                        <svg viewBox="0 0 24 24" width="48" height="48" style="margin-bottom: 10px;">
                             <path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M10 17L5 12l1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                         </svg>
-                        <h4>Order #${orderNumber} Confirmed!</h4>
-                        <p>Thank you for your purchase. We'll contact you shortly.</p>
-                        <p><a href="shop.html">Continue Shopping</a></p>
+                        <h4>✅ Payment Successful!</h4>
+                        <p>Order #${orderNumber} confirmed</p>
+                        <small>Ref: ${result.transaction_ref || 'N/A'}</small>
                     </div>
                 `;
-                
+
                 localStorage.removeItem('nasieku_cart');
-                
+
                 setTimeout(() => {
                     window.location.href = 'index.html';
-                }, 5000);
+                }, 3000);
+
             } else {
-                throw new Error(data.message || 'Order submission failed');
+                throw new Error(result.error || 'Payment failed');
             }
+
         } catch (error) {
-            document.getElementById('order-status').innerHTML = `
-                <div class="order-status-error">
-                    <svg viewBox="0 0 24 24" width="48" height="48">
-                        <path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/>
-                    </svg>
-                    <h4>Order Submission Failed</h4>
-                    <p>${error.message || 'Please try again or contact us'}</p>
+            console.error('Payment error:', error);
+            
+            paymentStatus.innerHTML = `
+                <div style="padding: 20px; background: #f8d7da; border-radius: 5px; color: #721c24;">
+                    <h4>❌ Payment Failed</h4>
+                    <p>${error.message}</p>
+                    <small>Please try again or contact support</small>
                 </div>
             `;
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Place Order';
+
+            confirmPaymentBtn.disabled = false;
+            confirmPaymentBtn.textContent = 'Try Again';
+            cancelPaymentBtn.disabled = false;
         }
     });
 });
 </script>
+
+<style>
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
 
 <!-- Updated Styles - FIXED SCROLL ISSUE -->
 <style>
