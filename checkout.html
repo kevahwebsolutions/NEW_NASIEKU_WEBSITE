@@ -355,9 +355,10 @@
     <div id="order-status"></div>
 </div>
 
-<!-- Updated Script Section (NO CONSOLE LOGS) -->
+<!-- Fixed Checkout Script -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // Get cart from localStorage (this is your existing data source)
     const cartData = localStorage.getItem('nasieku_cart');
     const cart = JSON.parse(cartData) || [];
     
@@ -576,6 +577,7 @@ Total: Ksh ${calculatedTotal.toLocaleString()}
                     </div>
                 `;
 
+                // Clear cart after successful payment
                 localStorage.removeItem('nasieku_cart');
 
                 setTimeout(() => {
