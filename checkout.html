@@ -315,87 +315,93 @@
             </div>
           </div>
 
-          <!-- Order Summary -->
-          <div class="col-lg-6 col-md-6">
-            <h3>Order Summary</h3>
-            <div class="order_table table-responsive">
-              <table class="order-summary-table">
-                <thead>
-                  <tr>
+          <!-- Replace the Order Summary section in your checkout.html (around line 179-215) -->
+
+<!-- Order Summary -->
+<div class="col-lg-6 col-md-6">
+    <h3>Order Summary</h3>
+    <div class="order_table table-responsive">
+        <table class="order-summary-table">
+            <thead>
+                <tr>
                     <th>Product</th>
                     <th>Price</th>
                     <th>Qty</th>
                     <th>Total</th>
-                  </tr>
-                </thead>
-                <tbody id="order-summary-items">
-                  <!-- Products will be inserted here by JavaScript -->
-                </tbody>
-                <tfoot>
-                  <tr>
+                </tr>
+            </thead>
+            <tbody id="order-summary-items">
+                <!-- Products will be inserted here by JavaScript -->
+            </tbody>
+            <tfoot>
+                <tr>
                     <td colspan="3">Subtotal</td>
                     <td id="order-subtotal">Ksh 0</td>
-                  </tr>
-                  <tr>
+                </tr>
+                <tr>
                     <td colspan="3">Shipping</td>
                     <td>Ksh 400</td>
-                  </tr>
-                  <tr class="total-row">
+                </tr>
+                <tr class="total-row">
                     <td colspan="3"><strong>Total</strong></td>
                     <td><strong id="order-total">Ksh 400</strong></td>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-            <div class="order_button mt-3">
-              <button type="submit" id="submit-btn">Place Order</button>
-            </div>
-            <div id="order-status"></div>
-          </div>
-        </div>
-      </form>
+                </tr>
+            </tfoot>
+        </table>
     </div>
-  </div>
+    <div class="order_button mt-3">
+        <button type="submit" id="submit-btn">Place Order</button>
+    </div>
+    <div id="order-status"></div>
 </div>
 
-
+<!-- Updated Script Section (NO CONSOLE LOGS) -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const cart = JSON.parse(localStorage.getItem('nasieku_cart')) || [];
+    const cartData = localStorage.getItem('nasieku_cart');
+    const cart = JSON.parse(cartData) || [];
+    
     const orderItemsContainer = document.getElementById('order-summary-items');
     const orderSubtotal = document.getElementById('order-subtotal');
     const orderTotal = document.getElementById('order-total');
     const form = document.getElementById('order-form');
     
-    // Generate order number
     const orderNumber = 'NSK-' + Math.floor(100000 + Math.random() * 900000);
-    form.innerHTML += `<input type="hidden" name="order_number" value="${orderNumber}">`;
+    const orderNumberInput = document.createElement('input');
+    orderNumberInput.type = 'hidden';
+    orderNumberInput.name = 'order_number';
+    orderNumberInput.value = orderNumber;
+    form.appendChild(orderNumberInput);
 
-    // Display order summary
     function displayOrderSummary() {
         let subtotal = 0;
         let productsHTML = '';
         let emailProducts = '';
         
         if (cart.length === 0) {
-            productsHTML = '<tr><td colspan="4" style="text-align:center;">Your cart is empty</td></tr>';
+            productsHTML = '<tr><td colspan="4" style="text-align:center; padding: 20px;">Your cart is empty. <a href="shop.html">Continue shopping</a></td></tr>';
         } else {
             cart.forEach((item) => {
-                const itemTotal = item.price * item.quantity;
+                const itemPrice = parseFloat(item.price);
+                const itemQty = parseInt(item.quantity);
+                const itemTotal = itemPrice * itemQty;
                 subtotal += itemTotal;
                 
-                // For website display
                 productsHTML += `
-                    <tr>
-                        <td>${item.name}</td>
-                        <td>Ksh ${item.price.toLocaleString()}</td>
-                        <td>${item.quantity}</td>
-                        <td>Ksh ${itemTotal.toLocaleString()}</td>
+                    <tr class="cart-item-row">
+                        <td class="product-info-cell">
+                            <div class="product-info">
+                                <img src="${item.img}" alt="${item.name}" class="product-thumbnail">
+                                <span class="product-name">${item.name}</span>
+                            </div>
+                        </td>
+                        <td class="price-cell">Ksh ${itemPrice.toLocaleString()}</td>
+                        <td class="qty-cell">${itemQty}</td>
+                        <td class="total-cell">Ksh ${itemTotal.toLocaleString()}</td>
                     </tr>
                 `;
                 
-                // For email
-                emailProducts += `${item.name} (Qty: ${item.quantity}) - Ksh ${itemTotal.toLocaleString()}\n`;
+                emailProducts += `${item.name} (Qty: ${itemQty}) - Ksh ${itemTotal.toLocaleString()}\n`;
             });
         }
         
@@ -406,29 +412,29 @@ document.addEventListener('DOMContentLoaded', function() {
         orderSubtotal.textContent = `Ksh ${subtotal.toLocaleString()}`;
         orderTotal.textContent = `Ksh ${total.toLocaleString()}`;
         
-        // Add formatted order details for email (only this will show in email)
-        form.innerHTML += `
-            <input type="hidden" name="order_details" value="
-            ORDER #${orderNumber}
-            --------------------------
-            ${emailProducts}
-            --------------------------
-            Subtotal: Ksh ${subtotal.toLocaleString()}
-            Shipping: Ksh 400
-            Total: Ksh ${total.toLocaleString()}
-            ">
+        const orderDetailsInput = document.createElement('input');
+        orderDetailsInput.type = 'hidden';
+        orderDetailsInput.name = 'order_details';
+        orderDetailsInput.value = `
+ORDER #${orderNumber}
+--------------------------
+${emailProducts || 'No items'}
+--------------------------
+Subtotal: Ksh ${subtotal.toLocaleString()}
+Shipping: Ksh 400
+Total: Ksh ${total.toLocaleString()}
         `;
+        form.appendChild(orderDetailsInput);
     }
 
-    // Initialize order summary display
     displayOrderSummary();
 
-    // Form submission
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
         
         if (cart.length === 0) {
-            alert('Your cart is empty!');
+            alert('Your cart is empty! Please add items before checkout.');
+            window.location.href = 'shop.html';
             return;
         }
 
@@ -436,7 +442,6 @@ document.addEventListener('DOMContentLoaded', function() {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Processing...';
         
-        // Show loading state
         document.getElementById('order-status').innerHTML = `
             <div class="order-status-loading">
                 <div class="spinner"></div>
@@ -462,7 +467,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const data = await response.json();
             
             if (data.success) {
-                // Show success
                 document.getElementById('order-status').innerHTML = `
                     <div class="order-status-success">
                         <svg viewBox="0 0 24 24" width="48" height="48">
@@ -470,11 +474,15 @@ document.addEventListener('DOMContentLoaded', function() {
                         </svg>
                         <h4>Order #${orderNumber} Confirmed!</h4>
                         <p>Thank you for your purchase. We'll contact you shortly.</p>
+                        <p><a href="shop.html">Continue Shopping</a></p>
                     </div>
                 `;
                 
-                // Clear cart
                 localStorage.removeItem('nasieku_cart');
+                
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 5000);
             } else {
                 throw new Error(data.message || 'Order submission failed');
             }
@@ -496,26 +504,219 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+<!-- Updated Styles - FIXED SCROLL ISSUE -->
 <style>
+/* Order Summary Table - NO SCROLL FIX */
+.order_table {
+    width: 100%;
+    max-width: 100%;
+}
+
 .order-summary-table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
+    table-layout: fixed; /* This prevents overflow */
 }
+
+/* Column widths to prevent overflow */
+.order-summary-table th:nth-child(1),
+.order-summary-table td:nth-child(1) {
+    width: 45%; /* Product column */
+}
+
+.order-summary-table th:nth-child(2),
+.order-summary-table td:nth-child(2) {
+    width: 20%; /* Price column */
+}
+
+.order-summary-table th:nth-child(3),
+.order-summary-table td:nth-child(3) {
+    width: 15%; /* Qty column */
+}
+
+.order-summary-table th:nth-child(4),
+.order-summary-table td:nth-child(4) {
+    width: 20%; /* Total column */
+}
+
 .order-summary-table th, 
 .order-summary-table td {
-    padding: 12px 15px;
+    padding: 12px 8px;
     text-align: left;
     border-bottom: 1px solid #eee;
+    vertical-align: middle;
+    word-wrap: break-word;
 }
+
 .order-summary-table th {
     font-weight: 600;
     background-color: #f9f9f9;
+    font-size: 13px;
+    text-transform: uppercase;
 }
+
+/* Product Info Cell with Image */
+.product-info-cell {
+    overflow: hidden;
+}
+
+.product-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.product-thumbnail {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #eee;
+    flex-shrink: 0;
+}
+
+.product-name {
+    font-size: 13px;
+    line-height: 1.3;
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* Other cells */
+.price-cell, .qty-cell, .total-cell {
+    white-space: nowrap;
+    font-size: 13px;
+}
+
+.qty-cell {
+    text-align: center;
+    font-weight: 600;
+}
+
+.total-cell {
+    font-weight: 600;
+    color: #333;
+}
+
 .total-row td {
-    border-top: 2px solid #eee;
-    font-size: 1.1em;
+    border-top: 2px solid #333;
+    font-size: 1.05em;
+    padding-top: 12px;
 }
+
+/* Laptop/Desktop specific fixes */
+@media (min-width: 992px) and (max-width: 1400px) {
+    .order-summary-table {
+        font-size: 12px;
+    }
+    
+    .product-thumbnail {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .product-name {
+        font-size: 12px;
+    }
+    
+    .order-summary-table th, 
+    .order-summary-table td {
+        padding: 10px 6px;
+    }
+}
+
+/* Tablet */
+@media (max-width: 991px) {
+    .order-summary-table th:nth-child(1),
+    .order-summary-table td:nth-child(1) {
+        width: 40%;
+    }
+    
+    .product-thumbnail {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .product-name {
+        font-size: 12px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .order_table {
+        overflow-x: visible;
+    }
+    
+    .order-summary-table {
+        font-size: 12px;
+        table-layout: auto;
+    }
+    
+    .order-summary-table thead {
+        display: none;
+    }
+    
+    .cart-item-row {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #eee;
+        padding: 10px;
+        border-radius: 4px;
+    }
+    
+    .order-summary-table td {
+        display: block;
+        width: 100% !important;
+        text-align: left !important;
+        border: none;
+        padding: 5px 0;
+    }
+    
+    .product-info-cell {
+        overflow: visible;
+    }
+    
+    .product-name {
+        -webkit-line-clamp: unset;
+        overflow: visible;
+    }
+    
+    .price-cell::before {
+        content: "Price: ";
+        font-weight: 600;
+    }
+    
+    .qty-cell::before {
+        content: "Quantity: ";
+        font-weight: 600;
+    }
+    
+    .qty-cell {
+        text-align: left !important;
+    }
+    
+    .total-cell::before {
+        content: "Total: ";
+        font-weight: 600;
+    }
+    
+    .order-summary-table tfoot tr {
+        display: table-row;
+    }
+    
+    .order-summary-table tfoot td {
+        display: table-cell;
+        width: auto !important;
+    }
+}
+
+/* Order Status Styles */
 .order-status-loading, 
 .order-status-success, 
 .order-status-error {
@@ -524,17 +725,26 @@ document.addEventListener('DOMContentLoaded', function() {
     margin-top: 20px;
     border-radius: 4px;
 }
+
 .order-status-loading {
     background-color: #f8f8f8;
 }
+
 .order-status-success {
     background-color: #f0fff0;
     color: #2e7d32;
 }
+
+.order-status-success a {
+    color: #2e7d32;
+    text-decoration: underline;
+}
+
 .order-status-error {
     background-color: #fff0f0;
     color: #c62828;
 }
+
 .spinner {
     border: 4px solid #f3f3f3;
     border-top: 4px solid #3498db;
@@ -544,9 +754,33 @@ document.addEventListener('DOMContentLoaded', function() {
     animation: spin 1s linear infinite;
     margin: 0 auto 15px;
 }
+
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+/* Order Button */
+.order_button button {
+    width: 100%;
+    padding: 15px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.order_button button:hover {
+    background-color: #555;
+}
+
+.order_button button:disabled {
+    background-color: #999;
+    cursor: not-allowed;
 }
 </style>
  
@@ -733,6 +967,8 @@ document.addEventListener('DOMContentLoaded', function() {
 <script src="assets/js/jquery.cookie.js"></script>
 <script src="assets/js/bpopup.js"></script>
 <script src="assets/js/header-categories.js"></script>
+<script src="assets/js/cart.js"></script>
+<script src="assets/js/cart-page.js"></script>
     <script src="assets/js/search.js"></script>
     <script src="assets/js/globalsearch.js"></script>
 
