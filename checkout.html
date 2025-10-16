@@ -987,61 +987,7 @@ Total: Ksh ${calculatedTotal.toLocaleString()}
             </form>
         </div>
     </div>
-</div>
-
-<script>
-    document.getElementById('sidebar-newsletter-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const form = e.target;
-        const submitting = form.querySelector('.web3forms-submitting');
-        const success = form.querySelector('.web3forms-success');
-        const error = form.querySelector('.web3forms-error');
-        
-        // Reset messages
-        submitting.style.display = 'none';
-        success.style.display = 'none';
-        error.style.display = 'none';
-        
-        // Show submitting
-        submitting.style.display = 'block';
-        
-        // Create new FormData and append additional fields
-        const formData = new FormData(form);
-        formData.append('from_name', 'Newsletter Subscription');
-        
-        fetch(form.action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'Accept': 'application/json'
-            }
-        })
-        .then(async response => {
-            const data = await response.json();
-            if (!response.ok) {
-                throw new Error(data.message || 'Submission failed');
-            }
-            return data;
-        })
-        .then(data => {
-            submitting.style.display = 'none';
-            if (data.success) {
-                success.style.display = 'block';
-                form.reset();
-                setTimeout(() => success.style.display = 'none', 5000);
-            } else {
-                throw new Error(data.message || 'Submission failed');
-            }
-        })
-        .catch(error => {
-            submitting.style.display = 'none';
-            errorEl.style.display = 'block';
-            errorEl.textContent = error.message || 'Network error. Please try again.';
-            console.error('Form submission error:', error);
-        });
-    });
-</script>
-                </div>
+</div>                </div>
             </div>
             <div class="footer_bottom">
                 <div class="row">
