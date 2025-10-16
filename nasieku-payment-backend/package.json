@@ -1,0 +1,12 @@
+{
+  "name": "nasieku-payment-backend",
+  "version": "1.0.0",
+  "description": "Payment processing backend for Nasieku",
+  "main": "api/process-payment.js",
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
