@@ -971,20 +971,14 @@ Total: Ksh ${calculatedTotal.toLocaleString()}
         <p>Subscribe for updates on new Maasai collections and our women's empowerment initiatives</p>
         <div class="subscribe_form">
             <form id="sidebar-newsletter-form" method="POST" action="https://api.web3forms.com/submit">
-                <input type="hidden" name="access_key" value="0e1eddcf-3892-41a6-aa8a-8f5ecf573890">
+                <input type="hidden" name="access_key" value="">
                 <input type="hidden" name="subject" value="Community Newsletter Subscription">
                 <!-- Remove redirect since you want to stay on page -->
                 <input type="text" name="Community Subscription" style="display:none"> <!-- Add honeypot -->
                 
                 <input name="email" placeholder="Your email address..." type="email" required>
                 <button type="submit">Subscribe</button>
-                
-                <div class="web3forms-feedback" style="margin-top: 10px; font-size: 14px;">
-                    <div class="web3forms-submitting" style="display: none; color: #666;">Submitting...</div>
-                    <div class="web3forms-success" style="display: none; color: #28a745;">Thank you for subscribing!</div>
-                    <div class="web3forms-error" style="display: none; color: #dc3545;">Error: Please try again later.</div>
-                </div>
-            </form>
+                </form>
         </div>
     </div>
 </div>                </div>
