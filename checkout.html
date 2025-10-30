@@ -409,7 +409,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         orderItemsContainer.innerHTML = productsHTML;
-        const shipping = 1;
+        const shipping = 400;
         calculatedTotal = subtotal + shipping;
         
         orderSubtotal.textContent = `Ksh ${subtotal.toLocaleString()}`;
@@ -538,7 +538,7 @@ ORDER #${orderNumber}
 ${orderData.emailProducts}
 --------------------------
 Subtotal: Ksh ${orderData.subtotal.toLocaleString()}
-Shipping: Ksh 1
+Shipping: Ksh 400
 Total: Ksh ${calculatedTotal.toLocaleString()}
                 `
             };
