@@ -5,16 +5,9 @@
    "category": "clothing and fashion",
    "image_url": "assets\\img\\clothing and fashion/3.jpg",
    "Image name": "3.jpg",
-   "price": 2240
- },
-
- {
-   "name": "Test Product",
-   "category": "clothing and fashion",
-   "image_url": "assets\\img\\clothing and fashion/3.jpg",
-   "Image name": "3.jpg",
    "price": 10
  },
+
  {
    "name": "Unisex Leather and Ankara Custom Made Bag",
    "category": "bags",
