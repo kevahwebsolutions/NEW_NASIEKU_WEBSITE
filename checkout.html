@@ -52,7 +52,7 @@
                                         
                         </div>
                         <div class="Offcanvas_footer">
-                            <span><a href="mailto:naekulcreations@gmail.com"><i class="fa fa-envelope-o"></i> naekulcreations@gmail.com</a></span>
+                            <span><a href="mailto:info@naeku-luxury.co.ke"><i class="fa fa-envelope-o"></i> info@naeku-luxury.co.ke</a></span>
                             <ul class="social_icons">
                                     <li>
                                         <a href="https://www.facebook.com/people/Nasieku-Luxury-Creations/100066309080077/"
@@ -267,7 +267,7 @@
   <div class="container">
     <div class="checkout_form">
       <form action="https://api.web3forms.com/submit" method="POST" id="order-form">
-        <input type="hidden" name="access_key" value="6c8c6827-abae-4ea0-ad3f-3441a9444705" />
+        <input type="hidden" name="access_key" value="0e1eddcf-3892-41a6-aa8a-8f5ecf573890" />
         <input type="hidden" name="subject" value="🛍️ New Order #{{ORDER_NUMBER}} from Nasieku Website" />
         <input type="hidden" name="from_name" value="Nasieku Orders" />
         <input type="text" name="honeypot" style="display:none">
@@ -340,11 +340,11 @@
                 </tr>
                 <tr>
                     <td colspan="3">Shipping</td>
-                    <td>Ksh 1</td>
+                    <td>Ksh 400</td>
                 </tr>
                 <tr class="total-row">
                     <td colspan="3"><strong>Total</strong></td>
-                    <td><strong id="order-total">Ksh 1</strong></td>
+                    <td><strong id="order-total">Ksh 400</strong></td>
                 </tr>
             </tfoot>
         </table>
@@ -409,7 +409,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         orderItemsContainer.innerHTML = productsHTML;
-        const shipping = 1;
+        const shipping = 400;
         calculatedTotal = subtotal + shipping;
         
         orderSubtotal.textContent = `Ksh ${subtotal.toLocaleString()}`;
@@ -538,7 +538,7 @@ ORDER #${orderNumber}
 ${orderData.emailProducts}
 --------------------------
 Subtotal: Ksh ${orderData.subtotal.toLocaleString()}
-Shipping: Ksh 1
+Shipping: Ksh 400
 Total: Ksh ${calculatedTotal.toLocaleString()}
                 `
             };
@@ -905,7 +905,7 @@ Total: Ksh ${calculatedTotal.toLocaleString()}
                             <div class="footer_contact">
                                 <p>Empowering Maasai women through traditional craftsmanship</p>
                                 <p>Phone: <a href="tel:+254721500197">+254 721 500 197</a></p>
-                                <p>Email: <a href="mailto:naekulcreations@gmail.com">naekulcreations@gmail.com</a></p>
+                                <p>Email: <a href="mailto:info@naeku-luxury.co.ke">info@naeku-luxury.co.ke</a></p>
                                 <ul class="social_icons">
                                     <li>
                                         <a href="https://www.facebook.com/people/Nasieku-Luxury-Creations/100066309080077/"
@@ -971,7 +971,7 @@ Total: Ksh ${calculatedTotal.toLocaleString()}
         <p>Subscribe for updates on new Maasai collections and our women's empowerment initiatives</p>
         <div class="subscribe_form">
             <form id="sidebar-newsletter-form" method="POST" action="https://api.web3forms.com/submit" novalidate>
-    <input type="hidden" name="access_key" value="6c8c6827-abae-4ea0-ad3f-3441a9444705">
+    <input type="hidden" name="access_key" value="0e1eddcf-3892-41a6-aa8a-8f5ecf573890">
     <input type="hidden" name="subject" value="Community Newsletter Subscription">
     <!-- Remove redirect since you want to stay on page -->
     <input type="text" name="Community Subscription" style="display:none"> <!-- Add honeypot -->
