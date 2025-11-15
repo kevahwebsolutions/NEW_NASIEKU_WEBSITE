@@ -349,6 +349,22 @@
             </tfoot>
         </table>
     </div>
+    <div class="payment-method mt-4">
+        <h4>Select Payment Method</h4>
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="radio" name="payment_method" id="mpesa-payment" value="mpesa" checked>
+            <label class="form-check-label" for="mpesa-payment">
+                <i class="fa fa-mobile"></i> M-Pesa
+            </label>
+        </div>
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="radio" name="payment_method" id="cod-payment" value="cod">
+            <label class="form-check-label" for="cod-payment">
+                <i class="fa fa-money"></i> Cash on Delivery
+            </label>
+        </div>
+    </div>
+    
     <div class="order_button mt-3">
         <button type="submit" id="submit-btn">Place Order</button>
     </div>
@@ -463,8 +479,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const cancelPaymentBtn = document.getElementById('cancel-payment-btn');
     const paymentStatus = document.getElementById('payment-status');
 
-    // Form submission - Show payment modal
-    form.addEventListener('submit', function(e) {
+    // Form submission - Handle payment method
+    form.addEventListener('submit', async function(e) {
         e.preventDefault();
         
         if (cart.length === 0) {
@@ -478,8 +494,18 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        modal.style.display = 'flex';
-        mpesaPhoneInput.focus();
+        const paymentMethod = document.querySelector('input[name="payment_method"]:checked').value;
+        
+        if (paymentMethod === 'mpesa') {
+            // Show M-Pesa modal for M-Pesa payment
+            modal.style.display = 'flex';
+            mpesaPhoneInput.focus();
+        } else {
+            // Handle Cash on Delivery
+            if (confirm('Are you sure you want to place a Cash on Delivery order?')) {
+                await submitOrder('cod');
+            }
+        }
     });
 
     // Cancel payment
@@ -492,7 +518,79 @@ document.addEventListener('DOMContentLoaded', function() {
         cancelPaymentBtn.disabled = false;
     });
 
-    // Process payment
+    // Function to submit order
+    async function submitOrder(paymentMethod, phoneNumber = '') {
+        const formData = new FormData(form);
+        const orderDetails = {
+            first_name: formData.get('first_name'),
+            last_name: formData.get('last_name'),
+            email: formData.get('email'),
+            phone: formData.get('phone'),
+            county: formData.get('county'),
+            city: formData.get('city'),
+            street_address: formData.get('street_address'),
+            apartment: formData.get('apartment'),
+            order_notes: formData.get('order_notes'),
+            order_number: orderNumber,
+            payment_method: paymentMethod,
+            order_details: `
+ORDER #${orderNumber}
+--------------------------
+${orderData.emailProducts}
+--------------------------
+Subtotal: Ksh ${orderData.subtotal.toLocaleString()}
+Shipping: Ksh 400
+Total: Ksh ${calculatedTotal.toLocaleString()}
+Payment Method: ${paymentMethod === 'mpesa' ? 'M-Pesa' : 'Cash on Delivery'}
+${paymentMethod === 'mpesa' ? `M-Pesa Phone: ${phoneNumber}` : ''}
+--------------------------
+SHIPPING ADDRESS
+${formData.get('first_name')} ${formData.get('last_name')}
+${formData.get('street_address')}${formData.get('apartment') ? ', ' + formData.get('apartment') : ''}
+${formData.get('city')}, ${formData.get('county')}
+${formData.get('phone')}
+            `
+        };
+
+        // Send order to WhatsApp for Cash on Delivery
+        if (paymentMethod === 'cod') {
+            const whatsappMessage = encodeURIComponent(`💳 *NEW CASH ON DELIVERY ORDER* 💳\n\n${orderDetails.order_details}`);
+            window.open(`https://wa.me/254721500197?text=${whatsappMessage}`, '_blank');
+        }
+
+        // Submit form to Web3Forms
+        try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            const result = await response.json();
+            
+            if (result.success) {
+                // Clear cart after successful order
+                localStorage.removeItem('nasieku_cart');
+                
+                // Show success message
+                const successMessage = paymentMethod === 'mpesa' ? 
+                    'Payment successful! Your order has been placed.' : 
+                    'Order placed successfully! Our team will contact you shortly to confirm your order.';
+                
+                alert(successMessage);
+                window.location.href = 'thank-you.html';
+            } else {
+                throw new Error('Failed to submit order');
+            }
+        } catch (error) {
+            console.error('Order submission error:', error);
+            alert('There was an error processing your order. Please try again or contact support.');
+        }
+    }
+
+    // Process M-Pesa payment
     confirmPaymentBtn.addEventListener('click', async function() {
         const phoneNumber = mpesaPhoneInput.value.trim();
         
@@ -520,29 +618,6 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
 
         try {
-            const formData = new FormData(form);
-            const orderDetails = {
-                first_name: formData.get('first_name'),
-                last_name: formData.get('last_name'),
-                email: formData.get('email'),
-                phone: formData.get('phone'),
-                county: formData.get('county'),
-                city: formData.get('city'),
-                street_address: formData.get('street_address'),
-                apartment: formData.get('apartment'),
-                order_notes: formData.get('order_notes'),
-                order_number: orderNumber,
-                order_details: `
-ORDER #${orderNumber}
---------------------------
-${orderData.emailProducts}
---------------------------
-Subtotal: Ksh ${orderData.subtotal.toLocaleString()}
-Shipping: Ksh 400
-Total: Ksh ${calculatedTotal.toLocaleString()}
-                `
-            };
-
             console.log('Sending payment request...');
             
             const response = await fetch('https://nasieku-payment-backend.vercel.app/api/process-payment', {
@@ -554,8 +629,8 @@ Total: Ksh ${calculatedTotal.toLocaleString()}
                     phone_number: phoneNumber,
                     amount: calculatedTotal,
                     order_number: orderNumber,
-                    customer_name: `${orderDetails.first_name} ${orderDetails.last_name}`,
-                    customer_email: orderDetails.email,
+                    customer_name: `${formData.get('first_name')} ${formData.get('last_name')}`,
+                    customer_email: formData.get('email'),
                     order_details: orderDetails
                 })
             });
@@ -577,12 +652,8 @@ Total: Ksh ${calculatedTotal.toLocaleString()}
                     </div>
                 `;
 
-                // Clear cart after successful payment
-                localStorage.removeItem('nasieku_cart');
-
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 3000);
+                // Submit the order after successful payment
+                await submitOrder('mpesa', phoneNumber);
 
             } else {
                 throw new Error(result.error || 'Payment failed');
@@ -958,9 +1029,9 @@ Total: Ksh ${calculatedTotal.toLocaleString()}
                             <h3>Customer Care</h3>
                             <div class="footer_menu">
                                 <ul>
-                                    <li><a href="shipping.html">Shipping Policy</a></li>
-                                    <li><a href="returns.html">Returns & Exchanges</a></li>
-                                    <li><a href="privacy.html">Privacy Policy</a></li>
+                                    <li><a href="shipping-policy.html">Shipping Policy</a></li>
+                                    <li><a href="returns-exchanges.html">Returns & Exchanges</a></li>
+                                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
                                 </ul>
                             </div>
                         </div>
